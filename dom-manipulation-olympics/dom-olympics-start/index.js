@@ -15,13 +15,13 @@ header.innerHTML += "<h1> JavaScript Made This!! </h1> <h2><span class = 'name'>
 
 let msgLeft = document.getElementsByClassName("message left")
 
-msgLeft[0].textContent = "Mama. Be careful not cut your finger mama"
-msgLeft[1].textContent = "Mama. You may NOT cut your mama finger!"
+msgLeft[0].textContent = "There's a coupon for a free gyro with purchase at Arby's, I might just buy some curly fries..."
+msgLeft[1].textContent = "I was thinking of making it a large curly fry so we can share"
 
 let msgRight = document.getElementsByClassName("message right")
 
-msgRight[0].textContent = "I'll be careful Claire."
-msgRight[1].textContent = "I promise I'll be VERY careful, Claire..."
+msgRight[0].textContent = "I'll gladly take those curly fries off your hands!"
+msgRight[1].textContent = "I guess I could share A curly fry with you..."
 
 
 function clear(){
