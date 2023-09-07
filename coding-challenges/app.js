@@ -62,3 +62,13 @@ console.log(findEvenNumbers([11, 22, 33, 44, 55, 66, 77, 88, 99, 100])) // Expec
 //5. for loops(loop)
 //6. index
 //7. .push(method) - definition here
+
+function Car(make, model, year){
+    this.make = make
+    this.model = model
+    this.year = year
+}
+
+
+var jeep = new Car("Jeep", "Cherokee", 1995)
+console.log(jeep)
