@@ -17,25 +17,35 @@ form.addEventListener("submit", function(e){
 
 
     edit.addEventListener("click", function(){
-        edit.innerHTML = "save"
-        let editForm = document.createElement("input")
-        editForm.setAttribute("form", "text")
-        editForm.value = listItem
-        newItem.append(editForm)
-        edit.addEventListener("click", function(){
-            newItem.textContent = editForm.value
-            let edit = document.createElement("button")
-            edit.innerHTML = "edit"
-            newItem.appendChild(edit)
-            let del = document.createElement("button")
-            del.innerHTML = "X"
-            newItem.appendChild(del)
-            del.addEventListener("click", function(){
-                del.parentElement.remove()
-                })
-             })
-        }, {once: true})
-    
+        // edit.innerHTML = "save"
+        // let editForm = document.createElement("input")
+        // editForm.setAttribute("form", "text")
+        // editForm.value = listItem
+        // newItem.append(editForm)
+        // edit.addEventListener("click", function(){
+        //     newItem.textContent = editForm.value
+        //     let edit = document.createElement("button")
+        //     edit.innerHTML = "edit"
+        //     newItem.appendChild(edit)
+        //     let del = document.createElement("button")
+        //     del.innerHTML = "X"
+        //     newItem.appendChild(del)
+        //     del.addEventListener("click", function(){
+        //         del.parentElement.remove()
+        //         })
+        //      })
+        // }, {once: true})
+        if (edit.clicked == true) {
+            let editForm = document.createElement("input")
+            editForm.setAttribute("form", "text")
+            editForm.value = listItem
+            newItem.append(editForm)
+            let save = document.createElement("button")
+            save.innerHTML = "save"
+            newItem.appendChild(save)
+
+        }
+    })
 
     let del = document.createElement("button")
     del.innerHTML = "X"
@@ -61,3 +71,5 @@ form.addEventListener("submit", function(e){
     // The input box will automatically have the value of the list item
     // The user can edit and "save" the input box's value
     // On save, the input box will disappear, and the new value will appear
+
+    // put edit button in if statement to make save button appear, then do the same with save button to make edit button appear... duh!

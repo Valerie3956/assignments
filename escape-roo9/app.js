@@ -42,9 +42,6 @@ while (doorIsLocked = true) {let answer = readline.question(`It looks like you'r
 `)
 
 
-
-
-
 switch(answer){ 
     case "1": 
         console.log(`You found a Key!`)
