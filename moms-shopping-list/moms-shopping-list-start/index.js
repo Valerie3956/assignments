@@ -12,36 +12,37 @@ form.addEventListener("submit", function(e){
 
     let edit = document.createElement("button")
     edit.innerHTML = "edit"
+
     newItem.appendChild(edit)
 
-    edit.addEventListener("click", function(e){
+
+    edit.addEventListener("click", function(){
         edit.innerHTML = "save"
         let editForm = document.createElement("input")
         editForm.setAttribute("form", "text")
         editForm.value = listItem
         newItem.append(editForm)
-        edit.addEventListener("click", function(e){
+        edit.addEventListener("click", function(){
             newItem.textContent = editForm.value
             let edit = document.createElement("button")
             edit.innerHTML = "edit"
             newItem.appendChild(edit)
             let del = document.createElement("button")
-             del.innerHTML = "X"
+            del.innerHTML = "X"
             newItem.appendChild(del)
-            del.addEventListener("click", function(e){
-            del.parentElement.remove()
-    })
+            del.addEventListener("click", function(){
+                del.parentElement.remove()
+                })
+             })
+        }, {once: true})
+    
 
-        })
-    }, {once: true})
-   
     let del = document.createElement("button")
     del.innerHTML = "X"
     newItem.appendChild(del)
-    del.addEventListener("click", function(e){
+    del.addEventListener("click", function(){
         del.parentElement.remove()
-    })
-
+        })
     form.title.value = ""
 })
 

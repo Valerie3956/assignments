@@ -1,15 +1,10 @@
 //bronze challenge
 
-// this didn't work, saving here so I know that it didn't work
-// let newH1 = document.createElement("h1")
-// newH1.textContent = "JavaScript Made This!!"
-// document.body.append(newH1)
 
 let header = document.getElementById("header")
 header.innerHTML += "<h1> JavaScript Made This!! </h1> <h2><span class = 'name'>Valerie</span> wrote the JavaScript</h2>"
 
-//OMG I spent 20 minutes figuring out that it's "innerHTML" and not "innerHtml"... It's leviOOOsa... not leviosAAAA...
-
+//OMG I spent 40 minutes figuring out that it's "innerHTML" and not "innerHtml"... It's leviOOOsa... not leviosAAAA...
 
 //silver challenge
 
@@ -35,26 +30,44 @@ document.getElementById("clear-button").addEventListener("click", clear )
 
 //gold challenge
 
-// if else loop with style changes
-
 let dropDown = document.getElementById("theme-drop-down")
 
-dropDown.addEventListener("change", colorChange)
-
-
-// function colorChange(value) {
-// console.log("yay you did it Mama!!!")
-// }
 
 function colorChange () {
     
     if (dropDown.value === "theme-one") {
-        document.body.getElementsByClassName("message left").style.backgroundColor = "blue"
-        console.log("YOU ROCK, VAL") } else {}
+        function left () {
+            let mLeft = document.getElementsByClassName("message left")
+            for (let i = 0; i < mLeft.length; i++) {
+                mLeft[i].style.backgroundColor = "lightblue"
+            }
+        }
+        function right () {
+            let mRight = document.getElementsByClassName("message right")
+            for (let i = 0; i < mRight.length; i++) {
+                mRight[i].style.backgroundColor = "burlywood"
+            }
+        }
+        left()
+        right()
+        
+        } else if (dropDown.value === "theme-two") {
+            function left () {
+                let mLeft = document.getElementsByClassName("message left")
+                for (let i = 0; i < mLeft.length; i++) {
+                    mLeft[i].style.backgroundColor = "burlywood"
+                }
+            }
+            function right () {
+                let mRight = document.getElementsByClassName("message right")
+                for (let i = 0; i < mRight.length; i++) {
+                    mRight[i].style.backgroundColor = "lightblue"
+                }
+            }
+            left()
+            right()
+}
 }
 
-// if (dropDown.value = "theme-two") {
-//     function colorChange ()
-// } else {
+dropDown.addEventListener("change", colorChange)
 
-// }

@@ -72,3 +72,54 @@ function Car(make, model, year){
 
 var jeep = new Car("Jeep", "Cherokee", 1995)
 console.log(jeep)
+
+
+// RICK ARRAY CHALLENGE
+
+function separateArrays (arr) {
+    let numbers = []
+    let strings = []
+    for (let i = 0; i < arr.length; i++){
+        if (typeof arr[i] === "number") {
+            numbers.push(arr[i])
+        }
+        else {strings.push(arr[i])}
+    }
+    console.log(numbers)
+    console.log(strings)
+}
+
+separateArrays([1, "Val", "Rick", 23, 15, "Roy", "Claire"])
+
+//SECOND ARRAY CHALLENGE
+
+function combineArrays (...arr) {
+let combinedArr = []
+for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+        combinedArr.push(arr[i][j])
+    }
+}
+console.log(combinedArr)
+
+}
+
+combineArrays([1, 2, 3, 4, 5],[6, 7, 8, 9, 10], [11, 12, 13, 14, 15])
+
+//THIRD ARRAY CHALLENGE
+
+function combineArrays (...arr) {
+    let combinedArr = []
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            combinedArr.push(arr[i][j])
+        }
+    }
+    function removeDuplicates(combinedArr){
+        return combinedArr.filter((item, index) => combinedArr.indexOf(item) === index)
+    }
+    console.log(removeDuplicates(combinedArr))
+    
+    }
+    
+    combineArrays([1, 2, 3, 4, 5],[6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [20, 20, 21, 21, 22, 22])
