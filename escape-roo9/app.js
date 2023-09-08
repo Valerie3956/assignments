@@ -32,7 +32,8 @@ const name = readline.question("What is your name? ");
 //         else if (anotherChoice === "2") {console.log(`WHAT'S WRONG WITH YOU, WHY WOULD YOU PUT YOUR HAND IN THE HOLE????????????`)}
 // }
 
-
+let doorIsLocked = true
+let keyIsFound = false
 
 while (doorIsLocked = true) {let answer = readline.question(`It looks like you're still stuck in this room, ${name} would you like to
 [1] Find the key
@@ -41,8 +42,6 @@ while (doorIsLocked = true) {let answer = readline.question(`It looks like you'r
 `)
 
 
-let doorIsLocked = true
-let keyIsFound = false
 
 
 
