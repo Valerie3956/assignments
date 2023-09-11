@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     right: 0;
-     bottom: 0;
+    bottom: 0;
     display:grid;
     grid-template-columns: repeat (4, 1fr);
     grid-template-rows: repeat (6, 1fr);
@@ -108,10 +108,11 @@
 
 #signup-h2 {
     font-family: 'Montserrat', sans-serif;
-    width: 700px;
+    font-size: 20px;
+    width: 300px;
 }
 
-@media (min-width: 700px){
+@media screen and (min-width: 700px){
 
 
 .grid-container {
@@ -119,7 +120,7 @@
     top : 0;
     left : 0;
     right : 0;
-     bottom : 0;
+    bottom : 0;
     display: grid ;
     grid-template-columns : repeat (4, 1fr);
     grid-template-rows : repeat (6, 1fr);
@@ -196,6 +197,7 @@
     grid-column: 1/5;
     grid-row: 6/7;
     display:flex;
+    flex-direction: row;
     justify-content: space-around;
 }
 
@@ -231,6 +233,7 @@
 
 #signup-h2 {
     font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
     width: 700px;
 }
 
