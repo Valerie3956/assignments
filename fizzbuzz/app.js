@@ -18,11 +18,6 @@ write()
 let solution = fizzbuzz.join("")
 console.log(solution)
 
-// let count = fizzbuzz.reduce(function (value, value2) {
-//     return (
-//         value[value2] ? ++value[value2] :(value[value2] = 1),
-//         value
-//     );
-// }, {});
- 
-// console.log(count);
+function count(){
+    
+}

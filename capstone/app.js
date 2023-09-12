@@ -1,7 +1,7 @@
 const readline = require("readline-sync");
 const input = require("readline-sync")
 const name = input.question("What is your name? ");
-console.log(`Twin Pines Mall, September 12, 1985, a DeLorean appears from out of nowhere and screeches to a halt. The door opens and Marty McFly approaches, a little confused \n "Doc?" \n "I'm afraid not Marty... You can call me ${name}" \n "I don't understand... where's Doc?" \n "He decided to stay in 2023... we don't have flying cars or hoverboards unfortunately, but he was quite fascinated with these smartphones we have. Although he's still trying to wrap his head around NFT's, along with the rest of us... \n "NF... what?" \n "my thoughts exactly... Get in Marty, we're going to travel back... to the future!"`)
+console.log(`Twin Pines Mall, September 12, 1985, a DeLorean appears from out of nowhere and screeches to a halt. The door opens and Marty McFly approaches, a little confused \n "Doc?" \n "I'm afraid not Marty... You can call me ${name}" \n "I don't understand... where's Doc?" \n "He decided to stay in 2023... we don't have flying cars or hoverboards unfortunately, but he was quite fascinated with these smartphones we have. Although he's still trying to wrap his head around NFT's, along with the rest of us..." \n "NF... what?" \n "My thoughts exactly... Get in Marty, we're going to travel back... to the future!"`)
 
 
 let hp = 100
@@ -109,7 +109,7 @@ function print(){
     console.log(`     hp: ${hp} \n     speed:${speed}`);
     console.log("     inventory:");
     for (let item in inventoryList) {
-        console.log(`${item}: ${inventoryList[item]}\n`);
+        console.log(`${item}: ${inventoryList[item]}`);
     }
 }
 

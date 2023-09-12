@@ -165,3 +165,24 @@ function isDivisible(num1, num2){
 console.log(isDivisible(4, 2)) // => true
 console.log(isDivisible(9, 3)) // => true
 console.log(isDivisible(15, 4)) // => false
+
+
+// write a function that will take a string and return a reverse string
+
+// function reverse(string){
+//     let array = []
+//     let bunchOfStrings = string.split("")
+//     for (i = (bunchOfStrings.length)-1; i >= 0; i--)
+//     array.push(bunchOfStrings[i])
+//     let reverseBunchOfStrings = array.join("")
+//     return reverseBunchOfStrings
+// }
+
+function reverse(string){
+    let bunchOfStrings = string.split("")
+    bunchOfStrings.reverse()
+    let answer = bunchOfStrings.join("")
+    return answer
+}
+
+console.log(reverse("ValerieSmith"))
