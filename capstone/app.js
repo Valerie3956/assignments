@@ -15,13 +15,23 @@ let speed = 0
 let inventory = []
 let enemyhp = 50
 let randomEnemy = ""
+// let inventoryList = inventory.reduce(function (value, value2) {
+//     return (
+//         value[value2] ? ++value[value2] :(value[value2] = 1),
+//         value
+//     )
+// }, {})
 
 
 function drive(){
-    input.keyIn(`[d] to drive\n`, {limit: "d"})
-    if (Math.floor(Math.random() * 3) === 0){
-    enemy()}}
-
+    const drive = input.keyIn(`[d] to drive [p] to print\n`, {limit: "dp"})
+    if (drive === "d"){
+        if (Math.floor(Math.random() * 3) === 0){
+        enemy()}} 
+    else if (drive === "p"){
+        print()
+    }
+}
 
 function enemy(){ let enemies = ["Biff Tannen", "Mr Strickland", "a breach of the space-time continuum!!!"]
             const randomEnemyIndex = Math.floor(Math.random() * enemies.length);
@@ -60,18 +70,19 @@ function enemyAttack(){
 }
 
 function die(){
-    console.log(`The DeLorean got destroyed... You're stuck in 1985`)
+    console.log(`The DeLorean got destroyed... You're stuck in 1985 \n hp: ${hp} \n speed:${speed} \n inventory:${inventory}`)
     hp = 0
 }
 
 function timeTravel (){
-    console.log(` Congratulations ${name}, you've reached 88mph and successfully made it back to 2023!`)
+    console.log(` Congratulations ${name}, you've reached 88mph and successfully made it back to 2023!\n hp: ${hp} \n speed:${speed} \n inventory:${inventory}`)
 }
 
 function enemyDie(){
     console.log(`You defeated ${randomEnemy}`)
     enemyhp = 50
-    speed = (speed + 10)
+    hp = (hp + 10)
+    speed = (speed + 15)
     let items = ["sports almanac", "hoverboard", "piece of the Flux Capacitor"]
     const itemsIndex = Math.floor(Math.random() * items.length);
     inventory.push(items[itemsIndex])
@@ -80,10 +91,10 @@ function enemyDie(){
 
 
 function choice(){
-   const choice = input.keyIn(`Do you want to [a]ttack or [r]un\n`, {limit: "ar"})
+   const choice = input.keyIn(`Do you want to [a]ttack or [r]un?\n`, {limit: "ar"})
    if (choice === "a"){
     fight()
-   } else {
+   } else if (choice === "r") {
     run()
    }
 }
