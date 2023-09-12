@@ -1,13 +1,7 @@
 const readline = require("readline-sync");
 const input = require("readline-sync")
 const name = input.question("What is your name? ");
-console.log(`Twin Pines Mall, September 12, 1985, a DeLorean appears from out of nowhere and screeches to a halt. The door opens and Marty McFly approaches, a little confused`) 
-console.log(`"Doc?"`)
-console.log(`"I'm afraid not Marty... You can call me ${name}"`)
-console.log(`"I don't understand... where's Doc?"`)
-console.log(`"He decided to stay in 2023... we don't have flying cars or hoverboards unfortunately, but he was quite fascinated with these smartphones we have. Although he's still trying to wrap his head around NFT's, along with the rest of us..."`)
-console.log(`"NF... what?"`)
-console.log(`"my thoughts exactly... Get in Marty, we're going to travel back... to the future!"`)
+console.log(`Twin Pines Mall, September 12, 1985, a DeLorean appears from out of nowhere and screeches to a halt. The door opens and Marty McFly approaches, a little confused \n "Doc?" \n "I'm afraid not Marty... You can call me ${name}" \n "I don't understand... where's Doc?" \n "He decided to stay in 2023... we don't have flying cars or hoverboards unfortunately, but he was quite fascinated with these smartphones we have. Although he's still trying to wrap his head around NFT's, along with the rest of us... \n "NF... what?" \n "my thoughts exactly... Get in Marty, we're going to travel back... to the future!"`)
 
 
 let hp = 100
@@ -20,8 +14,14 @@ let randomEnemy = ""
 //         value[value2] ? ++value[value2] :(value[value2] = 1),
 //         value
 //     )
-// }, {})
+// }, {} )
 
+while(hp > 0){ if (speed < 88) {
+    drive()} else {
+        timeTravel()
+        break
+    }
+}
 
 function drive(){
     const drive = input.keyIn(`[d] to drive [p] to print\n`, {limit: "dp"})
@@ -50,7 +50,6 @@ function run(){
 
 function fight (){
         enemyhp = (enemyhp - (Math.floor(Math.random() * (20 - 10) + 10)))
-        console.log(enemyhp)
         console.log(`You attacked ${randomEnemy}`)
         if (enemyhp > 0){
         enemyAttack()} else {
@@ -61,8 +60,7 @@ function fight (){
 
 function enemyAttack(){
         console.log(`${randomEnemy} fought back`)
-        hp = (hp - (Math.floor(Math.random() * (10 - 5) + 5)))
-        console.log(hp)
+        hp = (hp - (Math.floor(Math.random() * (10 - 5) + 5)))   
         if (hp > 0) {
             fight()} else {
             die()
@@ -70,12 +68,14 @@ function enemyAttack(){
 }
 
 function die(){
-    console.log(`The DeLorean got destroyed... You're stuck in 1985 \n hp: ${hp} \n speed:${speed} \n inventory:${inventory}`)
+    console.log(`The DeLorean got destroyed... You're stuck in 1985`)
     hp = 0
+    print()
 }
 
 function timeTravel (){
-    console.log(` Congratulations ${name}, you've reached 88mph and successfully made it back to 2023!\n hp: ${hp} \n speed:${speed} \n inventory:${inventory}`)
+    console.log(` Congratulations ${name}, you've reached 88mph and successfully made it back to 2023!`)
+    print()
 }
 
 function enemyDie(){
@@ -100,13 +100,18 @@ function choice(){
 }
 
 function print(){
-    console.log(`hp: ${hp} \n speed:${speed} \n inventory:${inventory}` )
-}
-
-while(hp > 0){ if (speed < 88) {
-    drive()} else {
-        timeTravel()
-        break
+    let inventoryList = inventory.reduce(function (value, value2) {
+    return (
+        value[value2] ? ++value[value2] :(value[value2] = 1),
+        value
+    )
+}, {} )
+    console.log(`     hp: ${hp} \n     speed:${speed}`);
+    console.log("     inventory:");
+    for (let item in inventoryList) {
+        console.log(`${item}: ${inventoryList[item]}\n`);
     }
 }
+
+
 

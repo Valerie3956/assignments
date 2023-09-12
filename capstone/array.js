@@ -5,6 +5,6 @@ let arrayList = array.reduce(function (value, value2) {
         value[value2] ? ++value[value2] :(value[value2] = 1),
         value
     )
-}, {})
+}, [])
 
 console.log(arrayList)
