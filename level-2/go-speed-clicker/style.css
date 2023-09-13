@@ -1,0 +1,35 @@
+.counter{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 200px;;
+}
+
+#button{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    color: #046307;
+    padding: 30px
+}
+
+#counter{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    color: #046307;
+    padding: 30px
+}
+
+#timer{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    color: #046307;
+    padding: 30px
+}
+
+#save{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    color: #046307;
+    padding: 30px
+}
