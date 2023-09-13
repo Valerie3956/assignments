@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class = "container">
+    <header id = header>
+<h1>Buddies Airlines!</h1>
+<h2>Where kids fly free!</h2>
+    </header>
+
+<main class = "form">
+    <form id = "form">
+        First Name:<input type = "text" name = "fName"/><br>
+        Last Name:<input type = "text" name = "lName"/><br>
+        Age: <input type = "number" name = "age"/><br>
+        Gender:  Boy <input value="boy" type="radio" name="gender"/>
+                Girl <input value="girl" type="radio" name="gender"/><br>
+        Destination: <select name = "destination">
+                        <option value = "waterPark">Water Park</option>
+                        <option value = "disneyWorld">Disney World</option>
+                        <option value = "northPole">North Pole</option>
+                    </select><br>
+        Meal Selection:<br> 
+        <input value=" Chicken Nuggets with a side of fries" name="meal" type="checkbox"/> Chicken Nuggets with a side of fries <br>
+        <input value=" Pizza" name="meal" type="checkbox"/>Pizza <br>
+        <input value=" Chocolate Chip Cookie" name="meal" type="checkbox"/>Chocolate chip cookie<br>
+        <input value=" Milk" name="meal" type="checkbox"/> Milk <br>
+        <input value=" Broccoli (nice job, Mom)" name="meal" type="checkbox"/>Broccoli (nice try, Mom!) <br>
+        <button>SUBMIT</button>
+    </form>
+</main>
+<footer id = footer>
+    <h2>Thank you for choosing Buddies Airlines and Have a great flight!</h2>
+</footer>
+</div>
+    
+<script src="app.js"></script> 
+</body>
+</html>

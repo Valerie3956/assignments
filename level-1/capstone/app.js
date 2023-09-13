@@ -9,12 +9,7 @@ let speed = 0
 let inventory = []
 let enemyhp = 50
 let randomEnemy = ""
-// let inventoryList = inventory.reduce(function (value, value2) {
-//     return (
-//         value[value2] ? ++value[value2] :(value[value2] = 1),
-//         value
-//     )
-// }, {} )
+
 
 while(hp > 0){ if (speed < 88) {
     drive()} else {

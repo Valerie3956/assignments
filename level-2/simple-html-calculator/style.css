@@ -1,0 +1,46 @@
+#calculator{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #d4a373;
+    color: #283618;
+}
+
+h1{
+    padding:20px;
+    background-color: #e9edc9;
+}
+
+P {
+    text-align: center;
+}
+#add{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    margin:20px;
+    background-color: #e9edc9 ;
+}
+
+#subtract{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+    margin:20px;
+    background-color: #e9edc9 ;
+}
+
+#multiply{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+    margin:20px;
+    background-color: #e9edc9 ;
+}
