@@ -17,19 +17,24 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 50px;
     color: #046307;
-    padding: 30px
+    padding: 10px
 }
 
 #timer{
     font-family: 'Orbitron', sans-serif;
     font-size: 50px;
     color: #046307;
-    padding: 30px
+    padding: 10px
 }
 
-#save{
+#previous{
     font-family: 'Orbitron', sans-serif;
     font-size: 50px;
     color: #046307;
-    padding: 30px
+}
+
+#return{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    color: #046307;
 }
