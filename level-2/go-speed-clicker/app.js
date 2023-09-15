@@ -7,15 +7,14 @@ let timer = setInterval(countdown, 1000)
 
 let countArr = []
 
-if (timeLeft > 0){
 button.addEventListener("click", function(){
+    if (timeLeft > -1){
 countArr.push(1)
 document.getElementById("counter").textContent = countArr.length
 let count = countArr.length
 localStorage.setItem("count", count.valueOf())
-return count
+return count}
 })
-} else {alert("time's up")}
 
 
 
