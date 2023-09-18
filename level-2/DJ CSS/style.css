@@ -1,0 +1,112 @@
+.red{
+    width: 200px;
+    height: 200px;
+    background-color: #008491;
+    border: solid 3px white;
+    border-radius: 10%;
+}
+
+.red:hover{
+    background-color: #931f21;
+    border: solid 10px #008491;
+    width: 300px;
+    height: 300px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.orange{
+    width:200px;
+    height:200px;
+    background-color: #008491;
+    border: solid 3px white;
+    border-radius: 10%;
+}
+
+.orange:hover{
+    background-color: #cc5500;
+    border: solid 10px #008491;
+    box-shadow: 5px 5px #cc5500;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+.green{
+    width:200px;
+    height:200px;
+    background-color: #008491;
+    border: solid 3px white;
+    border-radius: 10%;
+}
+
+.green:hover{
+    background-color: #81864A;
+    border: solid 10px #008491;
+    border-radius: 0%;
+    width: 250px;
+    height: 250px;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+.blue{
+    width:200px;
+    height:200px;
+    background-color: #008491;
+    border: solid 3px white;
+    border-radius: 10%;
+}
+
+.blue:hover{
+    background-color: #151667;
+    border: solid 10px #008491;
+    border-radius: 100%;
+    -webkit-transition: all 5s linear;
+    -moz-transition: all 5s linear;
+    -o-transition: all 5s linear;
+    transition: all 5s linear;
+}
+
+.pink{
+    width:200px;
+    height:200px;
+    background-color: #008491;
+    border: solid 3px white;
+    border-radius: 10%;
+}
+
+.pink:hover{
+    background-color: #eececc;
+    border: solid 10px #008491;
+    box-shadow: 5px 10px #eececc;
+    height:400px;
+    -webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+.purple{
+    width:200px;
+    height:200px;
+    background-color: #008491;
+    border: solid 3px white;
+    border-radius: 10%;
+}
+
+.purple:hover{
+    background-color: #E6E6FA;
+    border: solid 10px #008491;
+    box-shadow: 10px 5px #E6E6FA;
+    width:400px;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
