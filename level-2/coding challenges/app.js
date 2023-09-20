@@ -15,3 +15,15 @@ function convertToUppercase(strings) {return strings.map(x => x.toUpperCase()) }
 const strings = ['hello', 'world', 'javascript'];
 const uppercaseStrings = convertToUppercase(strings);
 console.log(uppercaseStrings);  // Output: ['HELLO', 'WORLD', 'JAVASCRIPT']
+
+
+// Write a function that takes an array of numbers and returns a new array containing only the even numbers.
+
+function filterEvenNumbers(numbers2) { return numbers2.filter(x => x % 2 === 0) }
+
+const numbers2 = [1, 2, 3, 4, 5, 6];
+const evenNumbers = filterEvenNumbers(numbers2);
+console.log(evenNumbers);  // Output: [2, 4, 6]
+
+
+
