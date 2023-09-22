@@ -46,8 +46,18 @@ button {
     color: #635b0b;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
 
+.TODO > h3 {
+    margin: 3px;
+}
+
+.TODO > button {
+    margin:0px;
+}
+
+.check{
+    display:flex;
+}

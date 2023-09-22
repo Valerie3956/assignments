@@ -1,6 +1,5 @@
 
 
-// part 1 get
 
 function createTODO(){
 axios.get("https://api.vschool.io/valeriesmith/todo")
@@ -18,7 +17,7 @@ axios.get("https://api.vschool.io/valeriesmith/todo")
             const price = document.createElement('h3')
             price.textContent = `price: ${response.data[i].price}`
             newDiv.appendChild(price)
-            const image = new Image(100)
+            const image = new Image(200)
             image.src = `${response.data[i].imgUrl}`
             newDiv.appendChild(image)
             const checkDiv = document.createElement('div')
@@ -30,7 +29,7 @@ axios.get("https://api.vschool.io/valeriesmith/todo")
                 if (response.data[i].completed === true){
                     check.checked = true
                 } else {check.checked = false}
-            check.setAttribute("id", "checkbox")
+            check.setAttribute("class", "checkbox")
             const checkText = document.createElement('h3')
             checkText.textContent = "Completed"
             checkDiv.appendChild(check)
@@ -39,16 +38,28 @@ axios.get("https://api.vschool.io/valeriesmith/todo")
                 if(check.checked){
                     const update = {completed:true}
                     axios.put(`https://api.vschool.io/valeriesmith/todo/${response.data[i]._id}`, update)
+                    .then(response => {
+                        location.reload()
+                })
+                    .catch(error => console.log(error))
                 }
                 else {
                     const update = {completed:false}
                     axios.put(`https://api.vschool.io/valeriesmith/todo/${response.data[i]._id}`, update)
+                    .then(response => {
+                        location.reload()
+                })
+                    .catch(error => console.log(error))
                 }
             })
             const del = document.createElement('button')
             del.innerText = "DELETE"
             del.addEventListener('click', function(){
                 axios.delete(`https://api.vschool.io/valeriesmith/todo/${response.data[i]._id}`)
+                .then(response => {
+                    location.reload()
+            })
+                .catch(error => console.log(error))
             })
             newDiv.appendChild(del)
             if (response.data[i].completed === true){
@@ -62,8 +73,7 @@ axios.get("https://api.vschool.io/valeriesmith/todo")
     .catch(error => console.log(error))
 }
 
-
-
+createTODO()
 // ### **Part 2 - POST**
 
 let form = document.getElementById("form")
@@ -79,21 +89,10 @@ form.addEventListener("submit", function(e){
         completed: false
     }
     axios.post("https://api.vschool.io/valeriesmith/todo", newTODO)
-    .then(response => console.log(response.data))
+    .then(response => location.reload())
     .catch(error => console.log(error))
 
 })
-
-createTODO()
-
-// ### **Part 3 - PUT Part 1**
-
-// - Each todo will have a checkbox where it can be marked complete or incomplete
-// - Checking the checkbox should update the database
-
-
-// ### **Part 4 - DELETE**
-
 
 
 // ### **Part 5 - PUT Part 2 (extra credit)**
