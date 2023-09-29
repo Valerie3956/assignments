@@ -1,0 +1,89 @@
+.header {
+    background-image: url("./Components/notebook.jpg");
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position-y: -150px;
+    height: 500px;
+}
+
+.title--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+}
+.blog--title {
+    font-family: "Montserrat";
+    font-size:50px;
+    margin:0px;
+}
+
+.blog--subtitle {
+    font-family: "Montserrat";
+    font-weight: 300;
+    margin:0px;
+}
+
+.nav{
+    font-family:"Montserrat";
+    font-weight: 900;
+    display:flex;
+    justify-content: space-around;
+    background-color:rgba(226,183,185, 0.35) ;
+}
+
+.menu{
+    display:flex;
+    list-style-type: none;
+    justify-content: space-around;
+    width: 400px;
+}
+
+.blog--post{
+    border-bottom: solid 1px #D3D3D3 ;
+margin-left:300px;
+margin-right:300px;
+}
+
+.button{
+    font-family:"Montserrat";
+    background-color:  #FB928E ;
+    padding: 10px 20px 10px 20px;
+    border:none;
+    font-size:20px;
+    position:relative;
+    right: -300px;
+    margin-top: 20px;
+}
+
+.blog--post--title{
+    font-family:"Montserrat";
+    font-weight: 900;
+}
+
+.blog--post--subtitle{
+    font-family:"Montserrat";
+    font-weight: 300;
+}
+
+.post--details{
+    font-family:"inria serif";
+    color:#949494
+}
+
+.post--details > span {
+    color:black;
+}
+
+.footer{
+    border-top: solid 1px #D3D3D3 ;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.copy{
+    font-family:"inria serif";
+    color:#949494
+}

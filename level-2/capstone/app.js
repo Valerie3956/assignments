@@ -66,6 +66,7 @@ axios.get("https://api.vschool.io/valeriesmith/todo")
                 title.style.textDecoration = "line-through"
                 description.style.textDecoration = "line-through"
                 price.style.textDecoration = "line-through"
+                image.style.display = "none"
             }
         }
     }

@@ -29,10 +29,18 @@ function doubleNumbers(arr){
 //     console.log(name)
 //   }
   
-function capitalizeNames(arr){
-    let nameConvention = x => x[0].toUpperCase() + x.slice(1).toLowerCase()
-    let caps = arr.map(nameConvention)
-    return caps;
+// function capitalizeNames(arr){
+//     let nameConvention = x => x[0].toUpperCase() + x.slice(1).toLowerCase()
+//     let caps = arr.map(nameConvention)
+//     return caps;
+// }
+
+//   console.log(capitalizeNames(["john", "JACOB", "jinGleHeimer", "schmidt"])); 
+
+  function capitalizeNames(arr){
+
+return arr.map(x => x[0].toUpperCase() + x.slice(1).toLowerCase())
+
 }
 
   console.log(capitalizeNames(["john", "JACOB", "jinGleHeimer", "schmidt"])); 

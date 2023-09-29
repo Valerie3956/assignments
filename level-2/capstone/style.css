@@ -1,11 +1,12 @@
 body {
     background-color: #e2d8c0 ;
     font-family: 'Montserrat', sans-serif;
-}
+}   
 
 h1 {
     color: #635b0b;
     text-align: center;
+    font-size: 50px;
 }
 
 .form-div{
@@ -17,6 +18,7 @@ h1 {
     align-items: center;
     position:relative;
     left: 28%;
+    border: solid 2px #ee9356;
 }
 
 input{
