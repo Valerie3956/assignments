@@ -12,7 +12,7 @@ export default function Vacation(props){
     return(
         <div className = "card">
             {<h3 className = "price--index">{priceIndex}</h3>}
-            <img src = {`../Images/${props.imageURL}`}></img>
+            <img src = {`./Images/${props.imageURL}`} width = "400px"></img>
             <h1>{props.place}</h1>
             <h2>{props.price}</h2>
             <h2>{props.timeToGo}</h2>
