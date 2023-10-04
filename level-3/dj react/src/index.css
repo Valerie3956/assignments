@@ -1,0 +1,19 @@
+:root{
+  width: 600px;
+  position: relative;
+left:33%;
+top: 15%;
+}
+
+.square{
+  display:inline-block;
+  border: solid 2px red;
+  width:200px;
+  height:200px;
+  margin:20px;
+}
+
+button{
+  padding: 10px;
+  margin: 5px;
+}

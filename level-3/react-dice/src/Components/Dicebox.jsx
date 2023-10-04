@@ -14,75 +14,79 @@ export default function Dicebox() {
         {
             value: 2,
             isSelected: false,
-            id:2
+            id: 2
         },
         {
             value: 3,
             isSelected: false,
-            id:3
+            id: 3
         },
         {
             value: 4,
             isSelected: false,
-            id:4
+            id: 4
         },
         {
             value: 5,
             isSelected: false,
-            id:5
+            id: 5
         },
         {
             value: 6,
             isSelected: false,
-            id:6
+            id: 6
         }])
+
+    const die = numbers.map(x => {
+        return (
+            <Die
+                number={x.value}
+                id={x.id}
+                isSelected={x.isSelected}
+                handleClick={freeze}
+            />
+        )
+    })
 
     function roll() {
         setNumbers(arr => {
             return arr.map(x => {
                 if (x.isSelected === true) {
-                    return(
-                    {...x})
+                    return (
+                        { ...x })
                 } else {
-        return {
-            ...x,
-            value: (Math.floor(Math.random() * 6 + 1))
-        }
-    }
-}
-//can I change my if statement into a ternary???
-            
+                    return {
+                        ...x,
+                        value: (Math.floor(Math.random() * 6 + 1))
+                    }
+                }
+            }
+                //can I change my if statement into a ternary???
+
             )
         })
     }
 
-function freeze(id) {
-    console.log(id)
-    setNumbers(arr => {
-        return arr.map(x => {
-            return {
-                ...x,
-                isSelected: !x.isSelected
+    function freeze(id) {
+        setNumbers(arr => {
+            return arr.map(x => {
+                if (x.id === id){
+                return {
+                    ...x,
+                    isSelected: !x.isSelected
+                }}
+                return x
             }
-        }
-        )
-    })
-}
+            )
+        })
+    }
 
-return (
-    <div className="container">
-        <Die
-            die1={numbers[0].value}
-            die2={numbers[1].value}
-            die3={numbers[2].value}
-            die4={numbers[3].value}
-            die5={numbers[4].value}
-            die6={numbers[5].value}
-            handleClick={freeze}
-        />
-        <button className="roll" onClick={roll}>Roll</button>
-    </div>
-)
+    return (
+        <div className="container">
+            {die}
+            <button className="roll" onClick={roll}>Roll</button>
+        </div>
+    )
 }
 
 //separate my onClicks so that each individual die gets toggled
