@@ -31,16 +31,22 @@ body {
   display:flex;
   flex-direction: column;
   align-items: center;
-  height: 500px;
-  overflow:scroll;
+  height: 700px;
+  overflow-y:scroll;
 }
 
 .friends > div{
   display:flex;
   margin: 30px;
-  background-color: #d2c2b2;
+  background-color: #ecded4;
+  border: solid 1px #bb5c3a;
   border-radius: 10px;
   width: 700px;
+}
+
+.humans--wrap{
+  display:flex;
+  align-items: center;
 }
 
 .humans {
@@ -48,6 +54,7 @@ body {
   color: #bb5c3a;
   margin: 50px 0px 50px 0px;
 }
+
 
 .all--pets{
   display: block;
@@ -62,7 +69,8 @@ body {
   margin: 5px;
   width: 75%;
   color: #bb5c3a;
-  font-weight: 300;
+  font-weight: 200;
+  transition: all 0.5s ease-in-out;
 }
 
 .pets:last-of-type{
