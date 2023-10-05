@@ -1,0 +1,85 @@
+:root {
+  width: 1000px;
+  position: relative;
+  left: 13%;
+  top: 15%;
+}
+
+.form--wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.form {
+  display: inline-block;
+  border: solid 2px black;
+  border-radius: 10px;
+  width: 890px;
+}
+
+.input {
+  margin: 10px;
+  padding: 10px;
+  width: 400px;
+  border: solid 1px black;
+  border-radius: 10px;
+}
+
+.textarea {
+  margin: 10px;
+  padding: 10px;
+  width: 840px;
+  border: solid 1px black;
+  border-radius: 10px;
+}
+
+.button {
+  margin: 10px;
+  padding: 10px;
+  width: 100px;
+  position: relative;
+  left: 40%;
+}
+
+.badge--wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.badge {
+  display: inline-block;
+  border: solid 2px black;
+  border-radius: 10px;
+  width: 890px;
+}
+
+.badge--title {
+  background-color: gray;
+  color: white;
+  margin: 0px;
+  padding: 10px 0px 10px 10px;
+}
+
+.badge--content {
+  display: inline-block;
+}
+
+.badge--content>h3 {
+  width: 400px;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.badge--content>p {
+  border: solid 1px black;
+  border-radius: 10px;
+  width: 840px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+}

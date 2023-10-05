@@ -7,7 +7,7 @@ import Name from "./Components/Name.jsx"
 // create component that maps through state and displays each string as an H1
 
 
-const namesArr = []
+
 
 
 
@@ -19,6 +19,7 @@ const [formData, setFormData] = React.useState({
   name : ""
 })
 
+const [namesArr, setNamesArr] = React.useState([])
 
 function handleChange(event){
   const {name, value} = event.target
@@ -33,8 +34,8 @@ function handleChange(event){
 function handleSubmit(event){
   event.preventDefault()
   namesArr.push(formData)
-  event.target.reset()
-  console.log(namesArr)
+  setFormData({name : ""})
+
 
 }
 
