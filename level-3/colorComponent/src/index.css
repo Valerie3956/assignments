@@ -1,0 +1,15 @@
+.square{
+  border: solid 2px black;
+  width:400px;
+  height:400px;
+  position: relative;
+  top:50%;
+  left:30%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button{
+  padding:15px;
+}
