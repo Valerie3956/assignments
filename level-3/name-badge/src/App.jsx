@@ -28,7 +28,11 @@ function App() {
       }
 
     })
-    event.target.value !== "" ? setDisabled(false): setDisabled(true)
+    const allFieldsFilled = Object.values(formData).every(field => field !== "");
+
+    setDisabled(!allFieldsFilled);
+    // if(formData.fName !== "" && formData.lName !== "" && formData.email !== "" && formData.plOfBirth !== "" && formData.phone !== "" && formData.favFood !== "" && formData.bio !== ""){setDisabled(false)} else {setDisabled(true)}
+    // event.target.value !== "" ? setDisabled(false): setDisabled(true)
   }
 
   function handleSubmit(event) {
