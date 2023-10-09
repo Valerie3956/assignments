@@ -6,8 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid 3px black;
   border-radius:5px;
+  border: solid 2px purple;
 }
 
 .button {
@@ -56,13 +56,14 @@
   padding: 5px;
   margin: 10px;
   color: white;
-  font-size: 40px;
+  font-size: 20px;
   transform: translateX(-50%);
   left: 50%;
   text-shadow: -2px 2px 0 #000,
     2px 2px 0 #000,
     2px -2px 0 #000,
     -2px -2px 0 #000;
+    font-family: Impact, sans-serif;
 }
 
 .bottom {
@@ -71,4 +72,32 @@
 
 .top {
   top: 0;
+}
+
+.meme--container{
+  width: 1000px;
+  position: relative;
+  left: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius:5px;
+}
+
+.button--container{
+  display:flex;
+  justify-content: center;
+  width: 1000px;
+  position: relative;
+  left: 20%;
+}
+
+.button--container > button {
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+  width: 350px;
 }
