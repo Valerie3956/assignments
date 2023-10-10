@@ -1,0 +1,32 @@
+body{
+  font-family: "Montserrat";
+
+}
+
+h1{
+  margin:50px 500px 20px 30px;
+}
+
+.container{
+  display:flex;
+  flex-direction: column;
+}
+.styling{
+  margin:10px;
+  padding:50px;
+  background-color: #d3d3d3;
+  width: 1000px;
+  height: auto;
+}
+
+.styling > form {
+  display:flex;
+  /* flex-direction: column; */
+  align-items: flex-end;
+  margin: 15px;
+  width: 100%;
+}
+ .styling > form > input, label {
+  margin: 15px;
+  display:inline-block;
+}
