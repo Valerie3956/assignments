@@ -13,8 +13,38 @@ export default function Ugly(props){
             <h4>{props.description}</h4>
             </div>
             <div className = "ugly--buttons">
-            <button onClick = {() => props.handleEdit(props.id)}>EDIT</button>
+            {props.editForm === false && <button onClick = {() => props.toggleForm(props.id)}>EDIT</button>}
             <button onClick = {() => props.handleDelete(props.id)}>DELETE</button>
+            {props.editForm && 
+                    <>
+                    <form onSubmit = {(event) => props.submitEdit(event, props.id)} className = "edit--form">
+                        <div className = "edit--inputs">
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            value={props.title}
+                            onChange={(event) => props.handleEdit(event, props.id)}
+                            name="title"
+                            />
+                        <input
+                            type="text"
+                            placeholder="img URL"
+                            value={props.imgUrl}
+                            onChange={(event) => props.handleEdit(event, props.id)}
+                            name="imgUrl"
+                            />
+                        <input
+                            type="text"
+                            placeholder="Description"
+                            value={props.description}
+                            onChange={(event) => props.handleEdit(event, props.id)}
+                            name="description"
+                            />
+                            </div>
+                        <button>SUBMIT EDIT</button>
+                    </form>
+                </>
+            }
             </div>
             
 

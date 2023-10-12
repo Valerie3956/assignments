@@ -89,3 +89,26 @@ body {
 .ugly--buttons>button:hover {
   background-color: #ee964b;
 }
+
+.edit--form>button{
+  width: 100px;
+  margin: 3px;
+  padding: 5px 0px 5px 0px;
+  background-color: #faf0ca;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+.edit--form>button:hover {
+  background-color: #ee964b;
+}
+
+.edit--inputs>input{
+  margin: 3px;
+  padding: 5px;
+  width: 150px;
+  background-color: #faf0ca;
+  border: none;
+  border-radius: 5px;
+}
