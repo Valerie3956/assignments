@@ -3,7 +3,7 @@ import React from "react"
 export default function Form() {
     return (
         <>
-            <form onSubmit = "TBD" className = "form">
+            {/* <form onSubmit = "TBD" className = "form">
                 <div className = "inputs">
                 <input
                     type="text"
@@ -28,7 +28,7 @@ export default function Form() {
                     />
                     </div>
                 <button>SUBMIT</button>
-            </form>
+            </form> */}
         </>
     )
 }
