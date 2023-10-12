@@ -93,3 +93,41 @@ body{
     padding: 0px 20px 0px 20px;
   
   }
+
+  /* scoresheet  */
+
+  .scoresheet{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+  }
+
+  .upper-light, .lower-light{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0px 50px 0px 50px;
+    background-color: #d2d3db;
+  }
+
+  .upper-dark, .lower-dark{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0px 50px 0px 50px;
+    background-color: #121212;
+    color:#5e43f3
+  }
+
+  .upper-light > input, .lower-light > input {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .upper-dark > input, .lower-dark > input {
+    margin: 10px;
+    padding: 10px;
+    background-color: #282828;
+    color:#5e43f3
+  }
