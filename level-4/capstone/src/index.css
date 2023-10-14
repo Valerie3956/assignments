@@ -1,0 +1,71 @@
+body{
+  font-family: "montserrat";
+}
+
+.footer, .header{
+  display:flex;
+  justify-content: space-around;
+  background-color: #e46b72;
+  padding: 30px;
+  width: 100%
+}
+
+.footer{
+  position: absolute;
+  bottom: 0px;
+}
+
+.title{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.title > h1, h4{
+  margin: 0
+}
+
+.nav{
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  list-style-type: none;
+}
+
+.navItems{
+  transition: all 0.5s ease-in-out;
+  padding: 10px 20px 10px 20px;
+  color:black;
+  font-size: 20px;
+  border-radius: 10px;
+
+}
+
+.link {
+  text-decoration: none;
+}
+
+.navItems:hover{
+background-color: #8e1d1f;
+color: #adc0ce
+}
+
+.search, .cook, .favorites{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+
+/* colors
+burgundy: #490a05 rgba(73,10,5,255)
+raspberry: #8e1d1f rgba(142,29,31,255)
+pink: #e46b72 rgba(228,107,114,255)
+blue: #adc0ce rgba(173,192,206,255)
+green: #327331 rgba(50,115,49,255) */
