@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <div className = "header">
             <div className = "title">
-            <h1>Zest</h1>
+            <h1>Home Chef</h1>
             <h4>the recipes app</h4>
             </div>
             <ul className = "nav">

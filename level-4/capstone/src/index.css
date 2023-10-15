@@ -1,41 +1,44 @@
-body{
+.container {
   font-family: "montserrat";
 }
 
-.footer, .header{
-  display:flex;
+.footer,
+.header {
+  display: flex;
   justify-content: space-around;
   background-color: #e46b72;
   padding: 30px;
   width: 100%
 }
 
-.footer{
-  position: absolute;
-  bottom: 0px;
+
+.footer {
+  margin-top: auto;
+
 }
 
-.title{
-  display:flex;
+.title {
+  display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.title > h1, h4{
+.title>h1,
+h4 {
   margin: 0
 }
 
-.nav{
+.nav {
   display: flex;
   justify-content: space-around;
   width: 400px;
   list-style-type: none;
 }
 
-.navItems{
+.navItems {
   transition: all 0.5s ease-in-out;
   padding: 10px 20px 10px 20px;
-  color:black;
+  color: black;
   font-size: 20px;
   border-radius: 10px;
 
@@ -45,12 +48,13 @@ body{
   text-decoration: none;
 }
 
-.navItems:hover{
-background-color: #8e1d1f;
-color: #adc0ce
+.navItems:hover {
+  background-color: #8e1d1f;
+  color: #adc0ce
 }
 
-.search, .cook, .favorites{
+.cook,
+.favorites {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,6 +66,71 @@ color: #adc0ce
 
 }
 
+.search {
+  min-height: 75vh;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.search>form {
+  grid-row: 1/2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search>form>input,
+button {
+  height: 30px;
+  width: 50%;
+  border-radius: 5px;
+  margin: 15px;
+  background-color: rgba(173, 192, 206, 0.35);
+  border: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.search>form>input:hover,
+button:hover {
+  background-color: #adc0ce;
+}
+
+
+.recipeList {
+  grid-row: 2/5;
+  max-height: 50vh;
+  overflow: auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe{
+  width: 60%;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.recipe--details{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.recipe > button{
+  width: 100px;
+  transition: all 0.5s ease-in-out;
+}
+
+.recipe > button:hover{
+  background-color: #adc0ce;
+}
 
 /* colors
 burgundy: #490a05 rgba(73,10,5,255)
