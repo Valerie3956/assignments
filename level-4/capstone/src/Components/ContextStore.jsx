@@ -1,10 +1,14 @@
 import React, { useState } from "react"
 import axios from "axios"
-// import Search from "./Search"
+import { v4 as uuidv4 } from 'uuid';
+import {useNavigate} from 'react-router-dom'
+import RecipeList from "./RecipeList";
 
 const ContextStore = React.createContext()
 
 function ContextStoreProvider(props) {
+
+    const navigate = useNavigate() 
 
     //states
 
@@ -14,7 +18,13 @@ function ContextStoreProvider(props) {
 
     const [recipes, setRecipes] = React.useState([])
 
-
+    const [cook, setCook] = React.useState({
+        title: "",
+        ingredients: "",
+        instructions: "",
+        servings: "",
+        id: ""
+    })
 
     //SEARCH COMPONENT
     //form which makes an API call
@@ -44,7 +54,8 @@ function ContextStoreProvider(props) {
                     title: x.title,
                     ingredients: x.ingredients,
                     instructions: x.instructions,
-                    servings: x.servings
+                    servings: x.servings,
+                    id: uuidv4(),
                 }
             }))
             )
@@ -53,7 +64,36 @@ function ContextStoreProvider(props) {
 
     console.log(recipes)
 
+// map through array of recipes and generate recipe list
 
+const recipeList = recipes.map(x => {
+    return <RecipeList 
+    title = {x.title}
+    servings = {x.servings}
+    ingredients = {x.ingredients}
+    instructions = {x.instructions}
+    id = {x.id}
+    key = {recipes.indexOf(x)}
+    selectRecipe = {selectRecipe}
+    />
+})
+
+// select a recipe and put it in Cook state
+
+function selectRecipe(event, id){
+
+const selectedRecipe = recipes.find(recipe => recipe.id === id)
+
+    setCook({
+        title: selectedRecipe.title,
+        ingredients: selectedRecipe.ingredients,
+        instructions: selectedRecipe.instructions,
+        servings: selectedRecipe.servings,
+        id: selectedRecipe.id
+    })
+    navigate("/cook")
+}
+console.log(cook)
 
 
     return (
@@ -62,7 +102,10 @@ function ContextStoreProvider(props) {
                 handleChange,
                 handleSubmit,
                 search,
-                recipes
+                recipes,
+                selectRecipe,
+                recipeList,
+                cook
             }}
         >
             {props.children}

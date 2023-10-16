@@ -4,15 +4,19 @@ import RecipeList from "./RecipeList"
 
 export default function Search(props){
 
-    const {handleChange, handleSubmit, search, recipes} = useContext(ContextStore)
+    const {handleChange, handleSubmit, search, recipeList} = useContext(ContextStore)
 
-const recipeList = recipes.map(x => {
-    return <RecipeList 
-    title = {x.title}
-    servings = {x.servings}
-    key = {recipes.indexOf(x)}
-    />
-})
+// const recipeList = recipes.map(x => {
+//     return <RecipeList 
+//     title = {x.title}
+//     servings = {x.servings}
+//     ingredients = {x.ingredients}
+//     instructions = {x.instructions}
+//     id = {x.id}
+//     key = {recipes.indexOf(x)}
+//     selectRecipe = {selectRecipe}
+//     />
+// })
 
     return(
         <div className = "search">

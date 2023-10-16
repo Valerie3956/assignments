@@ -1,6 +1,7 @@
 import React, {useContext} from "react"
 import { ContextStore } from "./ContextStore"
 
+
 export default function RecipeList(props){
 
     return(
@@ -9,7 +10,7 @@ export default function RecipeList(props){
             <h2>{props.title}</h2>
             <h3>{props.servings}</h3>
             </div>
-            <button>Cook this recipe!</button>
+            <button onClick = {(event) => props.selectRecipe(event, props.id)}>Cook this recipe!</button>
         </div>
     )
 }
