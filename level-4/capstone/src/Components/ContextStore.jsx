@@ -3,6 +3,7 @@ import axios from "axios"
 import { v4 as uuidv4 } from 'uuid';
 import {useNavigate} from 'react-router-dom'
 import RecipeList from "./RecipeList";
+import FavoriteRecipe from "./FavoriteRecipe";
 
 const ContextStore = React.createContext()
 
@@ -23,8 +24,11 @@ function ContextStoreProvider(props) {
         ingredients: "",
         instructions: "",
         servings: "",
-        id: ""
+        id: "",
+        isFavorite: false
     })
+
+    const [favorites, setFavorites] = React.useState([])
 
     //SEARCH COMPONENT
     //form which makes an API call
@@ -56,13 +60,14 @@ function ContextStoreProvider(props) {
                     instructions: x.instructions,
                     servings: x.servings,
                     id: uuidv4(),
+                    isFavorite: false
                 }
             }))
             )
             .catch(err => console.log(err))
     }
 
-    console.log(recipes)
+
 
 // map through array of recipes and generate recipe list
 
@@ -75,6 +80,9 @@ const recipeList = recipes.map(x => {
     id = {x.id}
     key = {recipes.indexOf(x)}
     selectRecipe = {selectRecipe}
+    isFavorite = {x.isFavorite}
+    addFavorite = {addFavorite}
+    removeFavorite = {removeFavorite}
     />
 })
 
@@ -89,12 +97,60 @@ const selectedRecipe = recipes.find(recipe => recipe.id === id)
         ingredients: selectedRecipe.ingredients,
         instructions: selectedRecipe.instructions,
         servings: selectedRecipe.servings,
-        id: selectedRecipe.id
+        id: selectedRecipe.id,
+        isFavorite: selectedRecipe.isFavorite
     })
     navigate("/cook")
 }
-console.log(cook)
 
+//display favorite recipes
+
+const favoriteRecipeList = favorites.map(x => {
+    return <FavoriteRecipe 
+    title = {x.title}
+    servings = {x.servings}
+    ingredients = {x.ingredients}
+    instructions = {x.instructions}
+    id = {x.id}
+    key = {favorites.indexOf(x)}
+    selectRecipe = {selectRecipe}
+    isFavorite = {x.isFavorite}
+    addFavorite = {addFavorite}
+    removeFavorite = {removeFavorite}
+    />
+})
+
+//toggle favorites
+
+function addFavorite(cook){
+    setCook(prevCook => {
+        return{
+            ...prevCook,
+            isFavorite : true
+        }
+    })
+        setFavorites(prevFavorites => {
+        return[...prevFavorites, cook]
+            }
+            )
+    }
+    console.log(favorites)
+
+function removeFavorite(id){
+    setCook(prevCook => {
+        return{
+            ...prevCook,
+            isFavorite : false
+        }
+    })
+
+    setFavorites(prevFavorites => {
+        const newFavList = prevFavorites.filter(arr => arr.id !== id)
+        return newFavList
+    })
+
+
+}
 
     return (
         <ContextStore.Provider
@@ -105,7 +161,11 @@ console.log(cook)
                 recipes,
                 selectRecipe,
                 recipeList,
-                cook
+                cook,
+                addFavorite,
+                removeFavorite,
+                favoriteRecipeList,
+                FavoriteRecipe
             }}
         >
             {props.children}

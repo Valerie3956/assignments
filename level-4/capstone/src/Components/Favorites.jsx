@@ -1,9 +1,13 @@
-import React from "react"
+import React, {useContext} from "react"
+import {ContextStore} from "./ContextStore"
 
 export default function Favorites(){
+
+    const {favoriteRecipeList} = useContext(ContextStore)
+    console.log(favoriteRecipeList)
     return(
         <div className = "favorites">
-        <h2>I am a rendered list of Val's favorite recipes!</h2>
+        {favoriteRecipeList}
         </div>
     )
 }
