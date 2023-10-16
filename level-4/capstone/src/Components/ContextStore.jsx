@@ -134,25 +134,14 @@ function ContextStoreProvider(props) {
             id={x.id}
             key={favorites.indexOf(x)}
             cookFavorite={cookFavorite}
-            removeFavorite = {removeFavorite}
+            removeFromFavoritesPage = {removeFromFavoritesPage}
             isFavorite={x.isFavorite}
         />
     })
 
     //toggle favorites
 
-    // function addFavorite(cook){
-    //     setCook(prevCook => (
-    //         {
-    //             ...prevCook,
-    //             isFavorite : true
-    //         }
-    //     ))
-    //     setFavorites(prevFavorites => {
-    //         return[...prevFavorites, cook]
-    //             })
-
-    //     }
+// toggle favorites from cook page
 
     function addFavorite(cook) {
         setCook(prevCook => ({
@@ -162,13 +151,10 @@ function ContextStoreProvider(props) {
 
 
     }
-
-
     console.log(cook);
     console.log(favorites);
 
-
-
+    
     function removeFavorite(id) {
         setCook(prevCook => {
             return {
@@ -177,6 +163,8 @@ function ContextStoreProvider(props) {
             }
         })
     }
+
+    // add/remove favorites from cook page
 
     React.useEffect(() => {
         if (cook.isFavorite) {
@@ -194,6 +182,15 @@ function ContextStoreProvider(props) {
         }
     }, [cook])
 
+    // remove favorites from FAVORITES page
+
+    function removeFromFavoritesPage(id){
+        setFavorites(prevFavorites => {
+            const newFavList = prevFavorites.filter(arr => arr.id !== id)
+            return newFavList
+        })
+    }
+
     return (
         <ContextStore.Provider
             value={{
@@ -208,7 +205,8 @@ function ContextStoreProvider(props) {
                 removeFavorite,
                 favoriteRecipeList,
                 FavoriteRecipe,
-                cookFavorite
+                cookFavorite,
+                removeFromFavoritesPage
             }}
         >
             {props.children}
