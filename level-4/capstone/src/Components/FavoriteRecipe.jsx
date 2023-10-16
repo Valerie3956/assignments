@@ -10,8 +10,8 @@ export default function FavoriteRecipe(props){
     return(
         <div className = "recipe">
             <div className = "recipe--details">
-            {props.isFavorite === false && <h2 onClick = {() => addFavorite(props.id)}><FontAwesomeIcon icon= {emptyHeart} /></h2>}
-           {props.isFavorite && <h2 onClick = {() => removeFavorite(props.id)}><FontAwesomeIcon icon= {solidHeart} /></h2>}
+            {props.isFavorite === false && <h2><FontAwesomeIcon icon= {emptyHeart} /></h2>}
+           {props.isFavorite && <h2><FontAwesomeIcon icon= {solidHeart} /></h2>}
             <h2>{props.title}</h2>
             <h3>{props.servings}</h3>
             </div>

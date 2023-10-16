@@ -12,6 +12,9 @@ export default function Header() {
                 <Link to="/" className = "link">
                     <li className = "navItems">Search</li>
                 </Link>
+                <Link to="cook" className = "link">
+                    <li className = "navItems">View Current Recipe</li>
+                </Link>
                 <Link to="favorites" className = "link">
                     <li className = "navItems">My Favorites</li>
                 </Link>

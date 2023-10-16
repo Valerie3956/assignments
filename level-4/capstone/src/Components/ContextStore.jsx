@@ -115,8 +115,6 @@ const favoriteRecipeList = favorites.map(x => {
     key = {favorites.indexOf(x)}
     selectRecipe = {selectRecipe}
     isFavorite = {x.isFavorite}
-    addFavorite = {addFavorite}
-    removeFavorite = {removeFavorite}
     />
 })
 
@@ -134,7 +132,12 @@ function addFavorite(cook){
             }
             )
     }
-    console.log(favorites)
+
+        console.log(cook);
+        console.log(favorites);
+
+
+
 
 function removeFavorite(id){
     setCook(prevCook => {
@@ -148,7 +151,6 @@ function removeFavorite(id){
         const newFavList = prevFavorites.filter(arr => arr.id !== id)
         return newFavList
     })
-
 
 }
 

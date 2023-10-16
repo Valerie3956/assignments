@@ -19,13 +19,16 @@ const instructionsList = instructions.map(step  => (<li key = {step}>{step}</li>
 
     return(
         <div className = "cook">
+        {cook.title !== "" &&
+        <div >
            {cook.isFavorite === false && <h2 onClick = {() => addFavorite(cook)}><FontAwesomeIcon icon= {emptyHeart} /></h2>}
            {cook.isFavorite && <h2 onClick = {() => removeFavorite(cook.id)}><FontAwesomeIcon icon= {solidHeart} /></h2>}
         <h2>Title: {cook.title}</h2>
         <h4>Servings: {cook.servings}</h4>
         <h3>Ingredients List: <ul>{listItems}</ul></h3>
         <h3>Instructions: <ol>{instructionsList}</ol></h3>
-        <button>Search</button><button>Go To My Favorites</button>
-        </div>
+        </div>}
+            </div>
+
     )
 }
