@@ -1,7 +1,8 @@
 import React, { useState } from "react"
+import { useEffect } from "react";
 import axios from "axios"
 import { v4 as uuidv4 } from 'uuid';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import RecipeList from "./RecipeList";
 import FavoriteRecipe from "./FavoriteRecipe";
 
@@ -9,7 +10,7 @@ const ContextStore = React.createContext()
 
 function ContextStoreProvider(props) {
 
-    const navigate = useNavigate() 
+    const navigate = useNavigate()
 
     //states
 
@@ -69,90 +70,129 @@ function ContextStoreProvider(props) {
 
 
 
-// map through array of recipes and generate recipe list
+    // map through array of recipes and generate recipe list
 
-const recipeList = recipes.map(x => {
-    return <RecipeList 
-    title = {x.title}
-    servings = {x.servings}
-    ingredients = {x.ingredients}
-    instructions = {x.instructions}
-    id = {x.id}
-    key = {recipes.indexOf(x)}
-    selectRecipe = {selectRecipe}
-    isFavorite = {x.isFavorite}
-    addFavorite = {addFavorite}
-    removeFavorite = {removeFavorite}
-    />
-})
-
-// select a recipe and put it in Cook state
-
-function selectRecipe(event, id){
-
-const selectedRecipe = recipes.find(recipe => recipe.id === id)
-
-    setCook({
-        title: selectedRecipe.title,
-        ingredients: selectedRecipe.ingredients,
-        instructions: selectedRecipe.instructions,
-        servings: selectedRecipe.servings,
-        id: selectedRecipe.id,
-        isFavorite: selectedRecipe.isFavorite
+    const recipeList = recipes.map(x => {
+        return <RecipeList
+            title={x.title}
+            servings={x.servings}
+            ingredients={x.ingredients}
+            instructions={x.instructions}
+            id={x.id}
+            key={recipes.indexOf(x)}
+            selectRecipe={selectRecipe}
+            isFavorite={x.isFavorite}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
+        />
     })
-    navigate("/cook")
-}
 
-//display favorite recipes
+    // select a recipe from search and put it in Cook state
 
-const favoriteRecipeList = favorites.map(x => {
-    return <FavoriteRecipe 
-    title = {x.title}
-    servings = {x.servings}
-    ingredients = {x.ingredients}
-    instructions = {x.instructions}
-    id = {x.id}
-    key = {favorites.indexOf(x)}
-    selectRecipe = {selectRecipe}
-    isFavorite = {x.isFavorite}
-    />
-})
+    function selectRecipe(event, id) {
 
-//toggle favorites
+        const selectedRecipe = recipes.find(recipe => recipe.id === id)
+        console.log(selectedRecipe)
 
-function addFavorite(cook){
-    setCook(prevCook => {
-        return{
-            ...prevCook,
-            isFavorite : true
-        }
-    })
-        setFavorites(prevFavorites => {
-        return[...prevFavorites, cook]
-            }
-            )
+        setCook({
+            title: selectedRecipe.title,
+            ingredients: selectedRecipe.ingredients,
+            instructions: selectedRecipe.instructions,
+            servings: selectedRecipe.servings,
+            id: selectedRecipe.id,
+            isFavorite: selectedRecipe.isFavorite
+        })
+        navigate("/cook")
     }
 
-        console.log(cook);
-        console.log(favorites);
+    //select recipe from favorites and put it in cook state
 
+    function cookFavorite(event, id) {
 
+        const selectedRecipe = favorites.find(recipe => recipe.id === id)
+        console.log(selectedRecipe)
 
+        setCook({
+            title: selectedRecipe.title,
+            ingredients: selectedRecipe.ingredients,
+            instructions: selectedRecipe.instructions,
+            servings: selectedRecipe.servings,
+            id: selectedRecipe.id,
+            isFavorite: selectedRecipe.isFavorite
+        })
+        navigate("/cook")
+    }
 
-function removeFavorite(id){
-    setCook(prevCook => {
-        return{
+    //display favorite recipes
+
+    const favoriteRecipeList = favorites.map(x => {
+        return <FavoriteRecipe
+            title={x.title}
+            servings={x.servings}
+            ingredients={x.ingredients}
+            instructions={x.instructions}
+            id={x.id}
+            key={favorites.indexOf(x)}
+            cookFavorite={cookFavorite}
+            removeFavorite = {removeFavorite}
+            isFavorite={x.isFavorite}
+        />
+    })
+
+    //toggle favorites
+
+    // function addFavorite(cook){
+    //     setCook(prevCook => (
+    //         {
+    //             ...prevCook,
+    //             isFavorite : true
+    //         }
+    //     ))
+    //     setFavorites(prevFavorites => {
+    //         return[...prevFavorites, cook]
+    //             })
+
+    //     }
+
+    function addFavorite(cook) {
+        setCook(prevCook => ({
             ...prevCook,
-            isFavorite : false
+            isFavorite: true
+        }));
+
+
+    }
+
+
+    console.log(cook);
+    console.log(favorites);
+
+
+
+    function removeFavorite(id) {
+        setCook(prevCook => {
+            return {
+                ...prevCook,
+                isFavorite: false
+            }
+        })
+    }
+
+    React.useEffect(() => {
+        if (cook.isFavorite) {
+            if (
+                favorites.every(x => x.id !== cook.id)
+            ) {
+                setFavorites(prevFavorites => [...prevFavorites, cook]);
+            }
+
+        } else {
+            setFavorites(prevFavorites => {
+                const newFavList = prevFavorites.filter(arr => arr.id !== cook.id)
+                return newFavList
+            })
         }
-    })
-
-    setFavorites(prevFavorites => {
-        const newFavList = prevFavorites.filter(arr => arr.id !== id)
-        return newFavList
-    })
-
-}
+    }, [cook])
 
     return (
         <ContextStore.Provider
@@ -167,7 +207,8 @@ function removeFavorite(id){
                 addFavorite,
                 removeFavorite,
                 favoriteRecipeList,
-                FavoriteRecipe
+                FavoriteRecipe,
+                cookFavorite
             }}
         >
             {props.children}
