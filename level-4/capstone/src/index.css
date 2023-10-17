@@ -17,12 +17,12 @@
   font-size: 60px;
 }
 
-.footer > a{
-  color:black;
+.footer>a {
+  color: black;
 }
 
-.footer >a:hover{
-  color:#8e1d1f
+.footer>a:hover {
+  color: #8e1d1f
 }
 
 .title {
@@ -113,32 +113,194 @@ button:hover {
   grid-row: 2/5;
   max-height: 50vh;
   overflow: auto;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.recipe{
+.recipe {
   width: 60%;
-  display:flex;
+  display: flex;
   justify-content: flex-end;
   align-items: center;
+  border-radius: 10px;
+  margin: 15px;
+  background-color: rgba(50, 115, 49, 0.15);
 }
 
-.recipe--details{
-  display:flex;
+.recipe--details {
+  display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.recipe > button{
-  width: 100px;
+.recipe>button {
+  width: 200px;
+  font-size: 15px;
   transition: all 0.5s ease-in-out;
 }
 
-.recipe > button:hover{
+.recipe>button:hover {
   background-color: #adc0ce;
 }
+
+
+@media only screen and (min-width: 1008px) {
+
+  .footer,
+  .header {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .footer {
+    margin-top: auto;
+    font-size: 60px;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+
+  .nav {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+  }
+
+
+  .recipe {
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .recipe--details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .recipe>button {
+    width: 200px;
+    font-size: 15px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .recipe>button:hover {
+    background-color: #adc0ce;
+  }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1007px) {
+
+  .recipe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .recipe--details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .recipe>button {
+    width: 300px;
+    font-size: 15px;
+    transition: all 0.5s ease-in-out;
+    margin: 5px;
+  }
+
+
+  .recipe>h2 {
+    margin: 5px
+  }
+
+  .recipe--details>h2 {
+    font-size: 20px;
+    margin: 5px
+  }
+
+  .recipe--details>h3 {
+    font-size: 15px;
+    margin: 5px
+  }
+}
+
+@media only screen and (max-width: 640px) {
+
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:0px;
+    width: 100%
+  }
+
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    width: 400px;
+    padding: 0px
+  }
+
+.navItems {
+  margin: 5px
+}
+  .recipe {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .recipe--details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .recipe>button {
+    width: 150px;
+    font-size: 15px;
+    margin: 5px;
+  }
+
+  .recipe>h2 {
+    margin: 5px
+  }
+
+  .recipe--details>h2 {
+    font-size: 20px;
+    margin: 5px
+  }
+
+  .recipe--details>h3 {
+    font-size: 15px;
+    margin: 5px
+  }
+}
+
 
 /* colors
 burgundy: #490a05 rgba(73,10,5,255)
