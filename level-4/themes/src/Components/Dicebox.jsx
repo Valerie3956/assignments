@@ -1,37 +1,14 @@
 import React, {useContext} from "react"
 import {ThemeContext} from "./ThemeContext"
+import {ScoreContext} from "./ScoreContext"
 import Die from "./Die.jsx"
 
 
-export default function Dicebox() {
+export default function Dicebox(props) {
 
-    const [numbers, setNumbers] = React.useState([
-        {
-            value: 1,
-            isSelected: false,
-            id: 1
-        },
-        {
-            value: 2,
-            isSelected: false,
-            id: 2
-        },
-        {
-            value: 3,
-            isSelected: false,
-            id: 3
-        },
-        {
-            value: 4,
-            isSelected: false,
-            id: 4
-        },
-        {
-            value: 5,
-            isSelected: false,
-            id: 5
-        },
-])
+const {numbers, setNumbers} = React.useContext(ScoreContext)
+
+const [count, setCount] = React.useState(3)
 
     const die = numbers.map(x => {
         return (
@@ -45,22 +22,28 @@ export default function Dicebox() {
     })
 
     function roll() {
-        setNumbers(arr => {
-            return arr.map(x => {
-                if (x.isSelected === true) {
-                    return (
-                        { ...x })
-                } else {
-                    return {
-                        ...x,
-                        value: (Math.floor(Math.random() * 6 + 1))
+        if (count >= 1) {
+
+            setNumbers(arr => {
+                return arr.map(x => {
+                    if (x.isSelected === true) {
+                        return (
+                            { ...x })
+                    } else {
+                        return {
+                            ...x,
+                            value: (Math.floor(Math.random() * 6 + 1))
+                        }
                     }
                 }
-            }
-                //can I change my if statement into a ternary???
-
-            )
-        })
+                    //can I change my if statement into a ternary???
+    
+                )
+            })
+            setCount(count => count - 1)
+        } else {
+            console.log("out of turns")
+        }
     }
 
     function freeze(id) {

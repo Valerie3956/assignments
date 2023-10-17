@@ -1,9 +1,11 @@
 import React, { useContext } from "react"
 import { ThemeContext } from "./ThemeContext"
+import { ScoreContext } from "./ScoreContext"
 
-export default function Scoresheet() {
+export default function Scoresheet(props) {
 
     const { color } = useContext(ThemeContext)
+    const {acesValue, twosValue} = useContext(ScoreContext)
 
     return (
         < div className={`container-${color}`}>
@@ -17,7 +19,7 @@ export default function Scoresheet() {
                         name="aces"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value= {acesValue}
                         placeholder="aces"
                         id="aces" />
 
@@ -27,7 +29,7 @@ export default function Scoresheet() {
                         name="twos"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={twosValue}
                         placeholder="twos"
                         id="twos" />
 
