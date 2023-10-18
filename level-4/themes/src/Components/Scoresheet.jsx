@@ -5,7 +5,7 @@ import { ScoreContext } from "./ScoreContext"
 export default function Scoresheet(props) {
 
     const { color } = useContext(ThemeContext)
-    const {acesValue, twosValue} = useContext(ScoreContext)
+    const {acesValue, twosValue, threesValue, foursValue, fivesValue, sixesValue, subtotalUpper, bonus, totalUpper} = useContext(ScoreContext)
 
     return (
         < div className={`container-${color}`}>
@@ -19,7 +19,7 @@ export default function Scoresheet(props) {
                         name="aces"
                         onChange="TBD"
                         disabled="false"
-                        value= {acesValue}
+                        value= {acesValue.value}
                         placeholder="aces"
                         id="aces" />
 
@@ -29,7 +29,7 @@ export default function Scoresheet(props) {
                         name="twos"
                         onChange="TBD"
                         disabled="false"
-                        value={twosValue}
+                        value={twosValue.value}
                         placeholder="twos"
                         id="twos" />
 
@@ -39,7 +39,7 @@ export default function Scoresheet(props) {
                         name="threes"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={threesValue.value}
                         placeholder="threes"
                         id="threes" />
 
@@ -49,7 +49,7 @@ export default function Scoresheet(props) {
                         name="fours"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={foursValue.value}
                         placeholder="fours"
                         id="fours" />
 
@@ -59,7 +59,7 @@ export default function Scoresheet(props) {
                         name="fives"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={fivesValue.value}
                         placeholder="fives"
                         id="fives" />
 
@@ -69,7 +69,7 @@ export default function Scoresheet(props) {
                         name="sixes"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={sixesValue.value}
                         placeholder="sixes"
                         id="sixes" />
                     <label htmlFor="total-upper">Total Upper</label>
@@ -77,7 +77,7 @@ export default function Scoresheet(props) {
                         name="total-upper"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={subtotalUpper}
                         placeholder="Total Score"
                         id="total-upper" />
 
@@ -87,7 +87,7 @@ export default function Scoresheet(props) {
                         name="upper-bonus"
                         onChange="TBD"
                         disabled="false"
-                        value="35"
+                        value={bonus}
                         placeholder="Score 35"
                         id="upper-bonus" />
 
@@ -96,7 +96,7 @@ export default function Scoresheet(props) {
                         name="totalUp"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={totalUpper}
                         placeholder="Total"
                         id="totalUp" />
 
