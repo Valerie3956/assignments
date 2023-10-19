@@ -21,5 +21,12 @@ userRouter.route("/")
     console.log(users)
 })
 
+userRouter.get("/search/age", (req, res) => {
+    const age = req.query.age
+    // console.log(status)
+    const filteredUsers = users.filter(user => user.age === age)
+    res.send(filteredUsers)
+})
+
 
 module.exports = userRouter

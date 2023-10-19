@@ -48,21 +48,35 @@ const bounties = [
   ]
 
 
-bountyRouter.route("/")
-.get((req, res) => {
+bountyRouter.get("/", (req, res) => {
     res.send(bounties)
 })
-.post((req, res) => {
+
+bountyRouter.post("/", (req, res) => {
     req.body._id = uuidv4()
     bounties.push(req.body)
     console.log(bounties)
 })
-// .delete((req, res) => {
 
-// })
-// .put((req, res) => {
+bountyRouter.delete("/:bountyId", (req, res) => {
 
-// })
+// const filteredBounties = bounties.filter(bounty => bounty._id !== req.params.bountyId)
+// res.send(filteredBounties)
+
+const bountyId = req.params.bountyId
+const bountyIndex = bounties.findIndex(bounty => bounty._id === bountyId)
+bounties.splice(bountyIndex, 1)
+res.send("successfully deleted bounty")
+})
+
+
+bountyRouter.put("/:bountyId", (req, res) => {
+const bountyId = req.params.bountyId
+const updateBounty = req.body
+const bountyIndex = bounties.findIndex(bounty => bounty._id === bountyId)
+const updatedBounty = Object.assign(bounties[bountyIndex], updateBounty)
+res.send(updatedBounty)
+})
 
 
 
