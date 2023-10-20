@@ -95,7 +95,8 @@ app.put("/todos/:todoId", (req, res) => {
     const id = req.params.todoId
     const todoIndex = todos.findIndex(todo => todo._id === id)
     const todoUpdate = req.body
-    Object.assign(todos[todoIndex], todoUpdate)
+    const updatedTodo = Object.assign(todos[todoIndex], todoUpdate)
+    res.send(updatedTodo)
 })
 
 

@@ -7,7 +7,7 @@ import AddTodoForm from './components/AddTodo'
 function App() {
   const [todos, setTodos] = useState([])
 
-  function getMovies(){
+  function getTodos(){
     axios.get("/todos")
     .then(res => setTodos(res.data))
     .catch(err => console.log(err))
@@ -33,21 +33,20 @@ function App() {
 
   function editTodo(updates, id){
     axios.put(`/todos/${id}`, updates)
-    .then(res => console.log(res))
-    // .then(res => {
-    //   setTodos(prevTodos => prevTodos.map(todo => todo._id !== id? todo : res.data))
-    // })
+    .then(res => {
+      setTodos(prevTodos => prevTodos.map(x => x._id !== id ? x : res.data))
+    })
     .catch(err => console.log(err))
   }
 
   useEffect(() => {
-    getMovies()
+    getTodos()
   }, [])
 
   return (
     <div>
-      {todos.map(todo => <Todos {...todo} key = {todo.id} handleClick = {deleteTodo} editTodo = {editTodo}/>)}
-      <AddTodoForm submit = {addTodo} btnText = "add Todo"/>
+      {todos.map(todo => <Todos {...todo} key = {todo._id} handleClick = {deleteTodo} editTodo = {editTodo}/>)}
+      <AddTodoForm submit = {addTodo} btnText = "add Todo" key = {Math.floor(Math.random * 10)}/>
     </div>
   )
 }

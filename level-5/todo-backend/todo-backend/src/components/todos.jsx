@@ -19,6 +19,7 @@ const [editToggle, setEditToggle] = useState(false)
         </>
         
         :
+        
         <>
         <AddTodoForm 
         name = {props.name}

@@ -24,14 +24,14 @@ setInputs(prevInputs => (
 }
 
 function handleSubmit(event){
-    event.preventDefault()
+    // event.preventDefault()
     props.submit(inputs, props._id)
     setInputs({
-        name: "",
-        description: "",
-        imageUrl: "",
-        completed: false,
-        _id: uuidv4()
+        name: props.name || "",
+        description: props.description || "",
+        imageUrl: props.imageUrl || "",
+        completed: props.completed || false,
+        _id: props._id || uuidv4()
     })
 }
 
