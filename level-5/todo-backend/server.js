@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const {v4:uuidv4} = require("uuid")
-
+const morgan = require('morgan')
 
 const todos = [
     {
@@ -56,24 +56,25 @@ const todos = [
 ]
 
 app.use(express.json())
+app.use(morgan('dev'))
 
 //post
 
-app.post("/", (req, res) => {
+app.post("/todos/", (req, res) => {
     req.body._id = uuidv4()
     todos.push(req.body)
-    res.send("the todo has been added")
+    res.send(req.body)
 })
 
 //get all
 
-app.get("/", (req, res) => {
+app.get("/todos/", (req, res) => {
     res.send(todos)
 })
 
 //get one
 
-app.get("/:todoId", (req, res) => {
+app.get("/todos/:todoId", (req, res) => {
     const id = req.params.todoId
     const todo = todos.find(x => x._id === id)
     res.send(todo)
@@ -81,7 +82,7 @@ app.get("/:todoId", (req, res) => {
 
 //delete
 
-app.delete("/:todoId", (req, res) => {
+app.delete("/todos/:todoId", (req, res) => {
     const id = req.params.todoId
     const todoIndex = todos.findIndex(todo => todo._id === id)
     todos.splice(todoIndex, 1)
@@ -90,7 +91,7 @@ app.delete("/:todoId", (req, res) => {
 
 //put
 
-app.put("/:todoId", (req, res) => {
+app.put("/todos/:todoId", (req, res) => {
     const id = req.params.todoId
     const todoIndex = todos.findIndex(todo => todo._id === id)
     const todoUpdate = req.body
@@ -99,4 +100,4 @@ app.put("/:todoId", (req, res) => {
 
 
 
-app.listen(1234, () => console.log("the server is running on port 1234"))
+app.listen(9000, () => console.log("the server is running on port 9000"))
