@@ -37,3 +37,38 @@ const people = [
 
 const sortedByAge = sortByProperty(people, 'name');
 console.log(sortedByAge);
+
+// Challenge: Write a program that generates a multiplication table for a given number.The table should display the multiplication of the given number with numbers from 1 to 10.
+function generateMultiplicationTable(number) {
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const multipliedNums = numbers.map(num => {
+    return(num * number)
+  })
+
+  for (let i = 0; i < numbers.length; i++){
+    const result = `${number} * ${numbers[i]} = ${multipliedNums[i]}`
+    console.log(result)
+  }
+//  return `${number} * ${numbers[0]} = ${multipliedNums[0]}`
+
+  //map over array and multiply number by each number
+  // return something like `${number} * ${numbers[i]} = ${result}`
+}
+
+// Test the function with different numbers
+// generateMultiplicationTable(5);
+// Expected Outcome: 
+/*
+5 * 1 = 5
+5 * 2 = 10
+5 * 3 = 15
+5 * 4 = 20
+5 * 5 = 25
+5 * 6 = 30
+5 * 7 = 35
+5 * 8 = 40
+5 * 9 = 45
+5 * 10 = 50 
+*/
+generateMultiplicationTable(7);
+generateMultiplicationTable(3);

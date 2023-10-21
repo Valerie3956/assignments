@@ -22,7 +22,7 @@ useEffect(() => {
 //post bounty
 
 function addBounty(newBounty){
-axios.post("./bounty", newBounty)
+axios.post("/bounty", newBounty)
 .then(res => {
   setBounties(prevBounties => [...prevBounties, newBounty])
 })

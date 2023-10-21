@@ -8,9 +8,7 @@ export default function AddTodoForm(props){
 const [inputs, setInputs] = React.useState({
     name: props.name || "",
     description: props.description || "",
-    imageUrl: props.imageUrl || "",
-    completed: props.completed || false,
-    _id: props._id || uuidv4()
+    imageUrl: props.imageUrl || ""
 })
 
 function handleChange(event){
@@ -29,9 +27,7 @@ function handleSubmit(event){
     setInputs({
         name: props.name || "",
         description: props.description || "",
-        imageUrl: props.imageUrl || "",
-        completed: props.completed || false,
-        _id: props._id || uuidv4()
+        imageUrl: props.imageUrl || ""
     })
 }
 
