@@ -11,7 +11,7 @@ app.use(morgan('dev'))
 
 app.use("/todos", require("./routes/todoRouter"))
 
-mongoose.connect("mongodb+srv://Valerie3956:FphOvqo4ajJ3gYEL@cluster0.vapwqs6.mongodb.net/todos?retryWrites=true&w=majority", () => console.log('connected to database'))
+mongoose.connect("mongodb+srv://Valerie3956:<password>@cluster0.vapwqs6.mongodb.net/todos?retryWrites=true&w=majority", () => console.log('connected to database'))
 
 //post
 
