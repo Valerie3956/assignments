@@ -39,21 +39,26 @@ return next(error)
 
 //delete
 
-todoRouter.delete("/:todoId", (req, res) => {
-    const id = req.params.todoId
-    const todoIndex = todos.findIndex(todo => todo._id === id)
-    todos.splice(todoIndex, 1)
-    res.send("successfully deleted todo")
+todoRouter.delete("/:todoId", (req, res, next) => {
+Todo.findOneAndDelete({_id: req.params.todoId}, (err, deletedItem) => {
+if(err){
+    res.status(500)
+    return next(err)
+}
+return res.status(200).send(`Successfully deleted item ${deletedItem.name} from the database`)
+})
 })
 
 //put
 
-todoRouter.put("/:todoId", (req, res) => {
-    const id = req.params.todoId
-    const todoIndex = todos.findIndex(todo => todo._id === id)
-    const todoUpdate = req.body
-    const updatedTodo = Object.assign(todos[todoIndex], todoUpdate)
-    res.send(updatedTodo)
+todoRouter.put("/:todoId", (req, res, next) => {
+Todo.findOneAndUpdate({_id: req.params.todoId}, req.body, {new: true}, (err,  updatedTodo) => {
+if(err){
+    res.status(500)
+    return next(err)
+}
+return res.status(200).send(updatedTodo)
+})
 })
 
 
