@@ -13,7 +13,7 @@ const [editToggle, setEditToggle] = useState(false)
         <h3>{props.lastName}</h3>
         <h4>{props.type}</h4>
         <h4>{props.bountyAmount}</h4>
-        <h4>{props.living? "alive" : "dead"}</h4>
+        <h4>{props.isLiving? "alive" : "dead"}</h4>
         <button onClick = {() => props.handleDelete(props._id)}>DELETE</button>
         <button onClick ={() => setEditToggle(prevToggle => !prevToggle)}>EDIT</button>
 </>
@@ -25,7 +25,7 @@ const [editToggle, setEditToggle] = useState(false)
         lastName = {props.lastName}
         type = {props.type}
         bountyAmount = {props.bountyAmount}
-        living = {props.living}
+        living = {props.isLiving}
         _id = {props._id}
         btnText = "submit edit"
         submit = {props.editBounty}

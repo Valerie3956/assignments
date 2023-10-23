@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 
 export default function BountyForm(props){
@@ -7,10 +7,10 @@ export default function BountyForm(props){
 const init = {
     firstName: props.firstName ||'',
     lastName: props.lastName || '',
-    living: props.living || true,
+    isLiving: props.living || true,
     bountyAmount: props.bountyAmount || "",
     type: props.type || '',
-    _id: props._id || uuidv4()
+    // _id: props._id 
 }
 
 const [input, setInput] = useState(init)
@@ -38,10 +38,11 @@ return(
 
     <>
 
-    <form onSubmit = {handleSubmit}>
+    <form onSubmit = {handleSubmit} className = "form">
         <input type = "text" name = "firstName" value = {input.firstName} onChange = {handleChange} placeholder = "First Name"/>
         <input type = "text" name = "lastName" value = {input.lastName} onChange = {handleChange} placeholder = "Last Name"/>
-        <input type = "checkbox" name = "living" id = "living"  checked = {input.living}  onChange = {handleChange} placeholder = "Living"/>
+        <input type = "checkbox" name = "living" id = "living"  checked = {input.isLiving}  onChange = {handleChange} placeholder = "Living"/>
+        <label htmlFor="living">Living</label>
         <input type = "text" name = "bountyAmount" value = {input.bountyAmount} onChange = {handleChange} placeholder = "Bounty Amount"/>
         <input type = "radio" name = "type" id = "Jedi" value = "Jedi" onChange = {handleChange} placeholder = "Type"/>
         <label htmlFor="Jedi">Jedi</label>
