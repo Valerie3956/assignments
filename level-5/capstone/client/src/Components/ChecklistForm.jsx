@@ -1,11 +1,14 @@
-import React from "react"
-
+import React, {useContext} from "react"
+import {ChecklistContext} from "./ChecklistContext"
 
 export default function ChecklistForm(props){
+
+    const {handleSubmit, handleChange, formData} = useContext(ChecklistContext)
+
     return(
-        <form>
-            <input type = "text" name = "item" id = "item"></input>
-            <button>submit</button>
+        <form onSubmit = {handleSubmit}>
+            <input className = "checklistInput" type = "text" name = "item" id = "item" value = {formData.item} onChange = {handleChange}></input>
+            <button className = "button">submit</button>
         </form>
     )
 }

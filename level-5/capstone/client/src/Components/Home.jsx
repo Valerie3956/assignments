@@ -9,12 +9,14 @@ export default function Footer(){
         author: "Uncle Iroh... possibly"
     }
         )
+        
 
-    // axios.get('https://zenquotes.io/api/today', {
+    // axios.get('https://cors-anywhere.herokuapp.com/https://zenquotes.io/api/today', {
     //     contentType: "application/json"
     // })
     // .then(res => setQuoteOfTheDay(res))
     // .catch(err => console.log(err))
+    //needs header
 
 console.log(quoteOfTheDay)
     return(

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext} from 'react'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Home from "./Components/Home"
@@ -7,9 +7,12 @@ import Journal from './Components/Journal'
 import JournalEntries from "./Components/JournalEntries"
 import Meditation from './Components/Meditation'
 import {Routes, Route} from "react-router-dom"
+// import { JournalContextProvider, JournalContext } from './Components/JournalContext'
 
 
 function App() {
+
+  // const {JournalEntries} = useContext(JournalContext)
 
   return (
     <div>

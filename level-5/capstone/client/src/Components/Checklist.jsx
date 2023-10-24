@@ -1,31 +1,44 @@
-import React, {useState} from "react";
+import React, { useContext, useState } from "react";
 import ChecklistForm from "./ChecklistForm";
 import { Link } from "react-router-dom"
+import { ChecklistContext } from "./ChecklistContext"
+import ChecklistItem from "./ChecklistItem";
 
-export default function Checklist(){
+export default function Checklist(props) {
 
-    const [items, setItem] = React.useState([])
 
-    return(
-        <div className = "main">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-            <div className = "navButtons">
-            <Link to="/" >
-                <button className = "button">Home</button>
+
+
+    const { checklistItem, addItem, editItem, submit, editToggle, toggle } = useContext(ChecklistContext)
+
+    const checklist = checklistItem.map(x => (
+<ChecklistItem
+item = {x.item} 
+id = {x._id}/>
+    ))
+
+    return (
+        <div className="main">
+<div className = "checklist">
+{checklist}
+</div>
+{editToggle && <>
+<ChecklistForm submit = {addItem} />
+<button className = "button" onClick = {() => toggle}>Close</button>
+</>
+}
+            <button className="button" onClick={() => toggle}>Edit List</button>
+            <div className="navButtons">
+                <Link to="/" >
+                    <button className="button">Home</button>
                 </Link>
-            <Link to="/journal" >
-                <button className = "button">Journal</button>
+                <Link to="/journal" >
+                    <button className="button">Journal</button>
                 </Link>
                 <Link to="/meditation" >
-                <button className = "button">Meditate</button>
+                    <button className="button">Meditate</button>
                 </Link>
-                </div>
+            </div>
         </div>
     )
 }

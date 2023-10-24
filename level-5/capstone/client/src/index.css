@@ -103,7 +103,7 @@ margin: 30px
   color: #22292f;
   transition: all 0.75s ease-in-out;
   padding: 10px 20px 10px 20px;
-  margin: 40px;
+  margin: 10px 40px 10px 40px;
   border-radius: 5px;
   font-size: 20px;
   font-weight: 200;
@@ -151,6 +151,94 @@ margin: 30px
 .journal >p{
   padding-bottom: 10px;
   border-bottom: solid 1px #153147;
+}
+
+/* journal form page */
+
+.journalForm{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.date{
+  padding:10px 20px 10px 20px;
+  margin-bottom:10px;
+  background-color: #f9f8f6;
+  color:#153147;
+  border:none
+}
+
+.textarea{
+  width:60vw;
+  height:30vh;
+  background-color: #f9f8f6;
+  color:#153147;
+  font-size: 20px;
+  resize:none;
+  border:none
+}
+
+.journalForm > button{
+  color: #153147;
+  transition: all 0.75s ease-in-out;
+  padding: 10px 20px 10px 20px;
+  margin: 10px 0px 10px 00px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 200;
+  border: none;
+  background-color: #f9f8f6;
+  font-family: "montserrat";
+}
+
+
+.button:hover{
+  background-color: #adb8ba;
+  color: #153147;
+  font-weight: 300;
+}
+
+/* checklist */
+
+.checklist{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.checklist > div{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.editButton{
+  color: #153147;
+  transition: all 0.75s ease-in-out;
+  padding: 5px 10px 5px 10px;
+  margin: 5px 5px 5px 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 200;
+  border: none;
+  background-color: #f9f8f6;
+  font-family: "montserrat";
+}
+
+.editButton:hover{
+  background-color: #adb8ba;
+  color: #153147;
+  font-weight: 300;
+}
+
+.checklistInput{
+  background-color: #f9f8f6;
+  color:#153147;
+  border:none;
+  font-family: 'montserrat';
+  height: 30px;
+  width:200px;
 }
 
 /* colors
