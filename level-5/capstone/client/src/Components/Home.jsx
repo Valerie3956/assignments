@@ -1,29 +1,31 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import axios from "axios"
 import { Link } from 'react-router-dom'
 
 export default function Footer(){
 
     const [quoteOfTheDay, setQuoteOfTheDay] = React.useState({
-        quote: 'Zuko, you must look within yourself to save yourself from your other self. Only then will your true self reveal itself.',
-        author: "Uncle Iroh... possibly"
+        q: '',
+        a: "",
+        h: ''
     }
         )
         
+useEffect(() => {
+    axios.get('https://request-forwarder.onrender.com?url=https://zenquotes.io/api/today', {
+        contentType: "application/json"
+    })
+    .then(res => setQuoteOfTheDay(res.data[0]))
+    .catch(err => console.log(err))
+}, [])
 
-    // axios.get('https://cors-anywhere.herokuapp.com/https://zenquotes.io/api/today', {
-    //     contentType: "application/json"
-    // })
-    // .then(res => setQuoteOfTheDay(res))
-    // .catch(err => console.log(err))
-    //needs header
 
 console.log(quoteOfTheDay)
     return(
         <div className = "main">
             <div className = "quote">
-            <h2>{quoteOfTheDay.quote}</h2>
-            <h3>{quoteOfTheDay.author}</h3>
+            <h2>{quoteOfTheDay.q}</h2>
+            <h3>{quoteOfTheDay.a}</h3>
             </div>
             <div className = "navButtons">
             <Link to="journal" >

@@ -11,11 +11,15 @@ export default function Checklist(props) {
 
     const { checklistItem, addItem, editItem, submit, editToggle, toggle } = useContext(ChecklistContext)
 
-    const checklist = checklistItem.map(x => (
-<ChecklistItem
-item = {x.item} 
-id = {x._id}/>
-    ))
+    const checklist = checklistItem.map(x => {
+        return     (
+            <ChecklistItem
+            item = {x.item} 
+            id = {x._id}/>
+                )
+    }
+
+   )
 
     return (
         <div className="main">
@@ -24,10 +28,10 @@ id = {x._id}/>
 </div>
 {editToggle && <>
 <ChecklistForm submit = {addItem} />
-<button className = "button" onClick = {() => toggle}>Close</button>
+<button className = "button" onClick = {() => toggle()}>Close</button>
 </>
 }
-            <button className="button" onClick={() => toggle}>Edit List</button>
+            <button className="button" onClick={() => toggle()}>Edit List</button>
             <div className="navButtons">
                 <Link to="/" >
                     <button className="button">Home</button>

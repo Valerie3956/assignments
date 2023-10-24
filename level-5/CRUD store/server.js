@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 app.use(express.json())
 app.use(morgan('dev'))
 app.use("/store", require("./routes/storeRouter"))
-mongoose.connect("mongodb+srv://Valerie3956:<password>@cluster0.vapwqs6.mongodb.net/store?retryWrites=true&w=majority", () => console.log('connected to database'))
+mongoose.connect("mongodb+srv://Valerie3956:NBAxqyuP5mQGyBWX@cluster0.vapwqs6.mongodb.net/store?retryWrites=true&w=majority", () => console.log('connected to database'))
 
 
 

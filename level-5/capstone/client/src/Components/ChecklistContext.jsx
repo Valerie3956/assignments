@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 
 
@@ -7,92 +7,66 @@ const ChecklistContext = React.createContext()
 
 function ChecklistContextProvider(props) {
 
-    const [checklistItem, setChecklistItem] = React.useState([
-        {
-            item: "Wake up early",
-            _id: 1
-        },
-        {
-            item: "Exercise or stretch",
-            _id: 2
-        },
-        {
-            item: "Take a shower",
-            _id: 3
-        },
-        {
-            item: "Eat a healthy breakfast",
-            _id: 4
-        },
-        {
-            item: "Meditate or practice mindfulness",
-            _id: 5
-        },
-        {
-            item: "Plan your day ahead",
-            _id: 6
-        }
-    ])
+    const [checklistItem, setChecklistItem] = React.useState([])
 
-    //checklist form
+    // get checklist items
+    useEffect(() => {
+    axios.get("/morning/checklist")
+    .then(res => setChecklistItem(res.data))
+    .catch(err => err.response.data.errMsg)
+}, [])
 
-    const [formData, setFormData] = React.useState({
-        item: "",
-        _id : 7
-    })
-
-    function handleChange(event) {
-        const { name, value } = event.target
-        setFormData(prevFormData => {
-            return {
-                ...prevFormData,
-                [name]: value
-            }
-        })
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault()
-        // submit(formData, props._id)
-        setInput(init)
-    }
-
-    //get checklist items
-    // axios.get(/checklist)
-    // .then(res => setChecklistItem(res.data))
-    // .catch(err => err.response.data.errMsg)
-
+// console.log(checklistItem)
     //add item
 
     function addItem(newItem) {
-        setChecklistItem(prevItems => [...prevItems, newItem])
+        axios.post("/morning/checklist", newItem)
+        .then(res => {
+
+            setChecklistItem(prevItems => [...prevItems, res.data])
+        })
+        .catch(err => err.response.data.errMsg)
     }
 
-    //edit item
+    //edit checklist
 
+//toggle to make the form appear to add an item to checklist as well as make edit and delete buttons appear at existing checklist items
     const [editToggle, setEditToggle] = useState(false)
-
-    function editItem() {
-        console.log("editing an item")
+    
+    function toggle(){
+        setEditToggle(prevToggle => !prevToggle)
     }
 
-    function toggle(){
-        setEditToggle(...prevToggle => !prevToggle)
-        console.log(editToggle)
+
+    function editItem(updatedItem, id) {
+        console.log(updatedItem, id)
+        // put checklist item
+        axios.put(`/morning/checklist/${id}`, updatedItem)
+        .then(res => {
+            setChecklistItem(prevItems => prevItems.map(item => item._id !== id? item : res.data))
+        })
+        .catch(err => err.response.data.errMsg)
+    }
+
+
+    //delete function
+    function deleteItem(id){
+        console.log(id)
+axios.delete(`/morning/checklist/${id}`)
+.then(res => console.log(res))
+.catch(err => err.response.data.errMsg)
+setChecklistItem(prevList => prevList.filter(item => item._id !== id))
     }
 
     return (
         <ChecklistContext.Provider
             value={{
-                handleChange,
-                handleSubmit,
-                formData,
                 checklistItem,
                 addItem,
                 editItem,
                 editToggle,
-                toggle
-                // submit
+                toggle,
+                deleteItem
             }}
 
         >
