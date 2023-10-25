@@ -95,8 +95,19 @@ margin: 30px
   font-style: italic;
 }
 
+.zen{
+  font-size: 10px;
+}
+
+.zen > a{
+  text-decoration: none;
+  color: #153147;
+}
+
 .navButtons{
-  display: flex
+  display: flex;
+  position:absolute;
+  bottom:17vh
 }
 
 .button{
@@ -110,6 +121,7 @@ margin: 30px
   border: none;
   background-color: #edeae3;
   font-family: "montserrat";
+  height:fit-content
 }
 
 .button:hover{
@@ -202,15 +214,29 @@ margin: 30px
 
 /* checklist */
 
+.checklistContainer{
+  display:flex;
+  height:60vh;
+  position:absolute;
+  bottom: 25vh
+}
+
 .checklist{
   display:flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow-y:auto;
+  width: 30vw;
+  overflow-wrap: normal;
 }
 
 .checklist > div{
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  height:50px;
+  font-size: 20px;
+  margin: 10px;
 }
 
 .editButton{
@@ -240,6 +266,18 @@ margin: 30px
   height: 30px;
   width:200px;
 }
+
+.unchecked{
+  text-decoration: none;
+  font-weight: 300;
+}
+
+.checked{
+  text-decoration: line-through;
+  font-weight: 200;
+}
+
+
 
 /* colors
 white #f9f8f6 rgba(249,248,246,255)

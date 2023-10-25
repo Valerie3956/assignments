@@ -26,6 +26,7 @@ console.log(quoteOfTheDay)
             <div className = "quote">
             <h2>{quoteOfTheDay.q}</h2>
             <h3>{quoteOfTheDay.a}</h3>
+            <p className = "zen">Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a></p>
             </div>
             <div className = "navButtons">
             <Link to="journal" >
@@ -38,7 +39,6 @@ console.log(quoteOfTheDay)
                 <button className = "button">Checklist</button>
                 </Link>
             </div>
-            <p>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a></p>
         </div>
     )
 }

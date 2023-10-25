@@ -31,7 +31,7 @@ export default function ChecklistForm(props){
     return(
         <form onSubmit = {handleSubmit}>
             <input className = "checklistInput" type = "text" name = "item" id = "item" value = {formData.item} onChange = {handleChange}></input>
-            <button className = "button">submit</button>
+            <button className = {props.style}>submit</button>
         </form>
     )
 }
