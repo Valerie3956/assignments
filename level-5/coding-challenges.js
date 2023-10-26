@@ -72,3 +72,4 @@ function generateMultiplicationTable(number) {
 */
 generateMultiplicationTable(7);
 generateMultiplicationTable(3);
+

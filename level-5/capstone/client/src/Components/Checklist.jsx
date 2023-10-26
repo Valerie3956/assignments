@@ -23,7 +23,7 @@ export default function Checklist(props) {
 
     return (
         <div className="main">
-            <div class="checklistContainer">
+            <div className="checklistContainer">
 
                 <div className="checklist">
                     {checklist}

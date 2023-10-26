@@ -5,7 +5,7 @@ import { ScoreContext } from "./ScoreContext"
 export default function Scoresheet(props) {
 
     const { color } = useContext(ThemeContext)
-    const {acesValue, twosValue, threesValue, foursValue, fivesValue, sixesValue, subtotalUpper, bonus, totalUpper} = useContext(ScoreContext)
+    const {acesValue, twosValue, threesValue, foursValue, fivesValue, sixesValue, subtotalUpper, bonus, totalUpper, threeOfAKindValue, fourOfAKindValue, fullHouseValue, yahtzeeValue, chanceValue} = useContext(ScoreContext)
 
     return (
         < div className={`container-${color}`}>
@@ -112,7 +112,7 @@ export default function Scoresheet(props) {
                         name="threeOfAKind"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={threeOfAKindValue.value}
                         placeholder="threeOfAKind"
                         id="threeOfAKind" />
 
@@ -122,7 +122,7 @@ export default function Scoresheet(props) {
                         name="FourOfAKind"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={fourOfAKindValue.value}
                         placeholder="FourOfAKind"
                         id="FourOfAKind" />
 
@@ -132,7 +132,7 @@ export default function Scoresheet(props) {
                         name="fullHouse"
                         onChange="TBD"
                         disabled="false"
-                        value="25"
+                        value={fullHouseValue.value}
                         placeholder="fullHouse"
                         id="fullHouse" />
 
@@ -162,7 +162,7 @@ export default function Scoresheet(props) {
                         name="notYahtzee"
                         onChange="TBD"
                         disabled="false"
-                        value="50"
+                        value={yahtzeeValue.value}
                         placeholder="notYahtzee"
                         id="notYahtzee" />
 
@@ -172,7 +172,7 @@ export default function Scoresheet(props) {
                         name="Chance"
                         onChange="TBD"
                         disabled="false"
-                        value="tbd"
+                        value={chanceValue.value}
                         placeholder="Chance"
                         id="Chance" />
 

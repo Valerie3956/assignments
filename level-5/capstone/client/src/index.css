@@ -239,6 +239,10 @@ margin: 30px
   margin: 10px;
 }
 
+.checklist >div:hover{
+  cursor: pointer;
+}
+
 .editButton{
   color: #153147;
   transition: all 0.75s ease-in-out;
