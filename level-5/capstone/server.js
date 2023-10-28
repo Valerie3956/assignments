@@ -4,6 +4,7 @@ const morgan = require("morgan")
 const mongoose = require('mongoose')
 require('dotenv').config()
 const URL = process.env.MONGO_URL
+console.log(URL)
 
 
 app.use(express.json())
