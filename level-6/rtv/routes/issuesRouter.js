@@ -74,6 +74,10 @@ issueRouter.delete("/:issueId", (req, res, next) => {
           res.status(500)
           return next(err)
         }
+        if(!deletedIssue){
+          res.status(403)
+            return next(new Error("You may not delete someone else's issue"))
+        }
         return res.status(200).send(`Successfully delete issue`)
       }
     )
@@ -115,6 +119,10 @@ issueRouter.put("/:issueId", (req, res, next) => {
         if(err){
           res.status(500)
           return next(err)
+        }
+        if(!updatedIssue){
+          res.status(403)
+          return next(new Error("You may not modify someone else's issue"))
         }
         return res.status(201).send(updatedIssue)
       }

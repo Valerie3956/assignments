@@ -57,60 +57,96 @@ commentsRouter.post("/:issueId", (req, res, next) => {
 
 //delete comment
 
+// commentsRouter.delete("/:commentId", (req, res, next) => {
+//     // console.log(req)
+//     Comment.find({_id : req.params.commentId}, (err, comment) => {
+//         console.log(comment)
+//         if(err){
+//             res.status(500)
+//             return next(err)
+//         }
+//         if(!comment){
+//             res.status(404)
+//             return next(new Error("Comment not found"))
+//         }
+//         if(comment.user && comment.user.toString() !== req.auth._id){
+//             res.status(403)
+//             return next(new Error("You may not delete someone else's comment"))
+//         }
+//         comment.remove(
+//             (err, deletedComment) => {
+//                 if(err){
+//                     res.status(500)
+//                     return next(err)
+//                 }
+//                 return res.status(200).send(`successfully deleted ${deletedComment.title}`)
+//             })
+//         }
+//     )
+// })
+
 commentsRouter.delete("/:commentId", (req, res, next) => {
-    // console.log(req)
-    Comment.find({_id : req.params.commentId}, (err, comment) => {
-        console.log(comment)
+    Comment.findOneAndDelete(
+      { _id: req.params.commentId, user: req.auth._id },
+      (err, deletedComment) => {
         if(err){
-            res.status(500)
-            return next(err)
+          res.status(500)
+          return next(err)
         }
-        if(!comment){
-            res.status(404)
-            return next(new Error("Comment not found"))
-        }
-        if(comment.user && comment.user.toString() !== req.auth._id){
-            res.status(403)
+        if(!deletedComment){
+          res.status(403)
             return next(new Error("You may not delete someone else's comment"))
         }
-        comment.remove(
-            (err, deletedComment) => {
-                if(err){
-                    res.status(500)
-                    return next(err)
-                }
-                return res.status(200).send(`successfully deleted ${deletedComment.title}`)
-            })
-        }
+        return res.status(200).send(`Successfully delete comment`)
+      }
     )
-})
+  })
 
 //modify comment
 
+// commentsRouter.put("/:commentId", (req, res, next) => {
+//     Comment.find({_id : req.params.commentId}, (err, comment) => {
+//         if(err){
+//             res.status(500)
+//             return next(err)
+//         }
+//         if(comment.user !== req.auth._id){
+//             res.status(403)
+//             return next(new Error("You may not modify someone else's comment"))
+//         }
+//         comment.updateOne(
+//             req.body,
+//         {new:true},
+//         (err, updatedComment) => {
+//             if(err){
+//                 res.status(500)
+//                 return next(err)
+//             }
+//             console.log(req.auth._id)
+//             return res.status(201).send(updatedComment)
+//         })
+//         }
+//     )
+// })
+
 commentsRouter.put("/:commentId", (req, res, next) => {
-    Comment.find({_id : req.params.commentId}, (err, comment) => {
+    Comment.findOneAndUpdate(
+      { _id: req.params.commentId, user: req.auth._id },
+      req.body,
+      { new: true },
+      (err, updatedComment) => {
         if(err){
-            res.status(500)
-            return next(err)
+          res.status(500)
+          return next(err)
         }
-        if(comment.user !== req.auth._id){
-            res.status(403)
-            return next(new Error("You may not modify someone else's comment"))
+        if(!updatedComment){
+          res.status(403)
+          return next(new Error("You may not modify someone else's comment"))
         }
-        comment.updateOne(
-            req.body,
-        {new:true},
-        (err, updatedComment) => {
-            if(err){
-                res.status(500)
-                return next(err)
-            }
-            console.log(req.auth._id)
-            return res.status(201).send(updatedComment)
-        })
-        }
+        return res.status(201).send(updatedComment)
+      }
     )
-})
+  })
 
 
 module.exports = commentsRouter
