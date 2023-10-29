@@ -18,7 +18,7 @@ mongoose.connect(
 app.use("/user", require('./routes/userRouter'))
 app.use('/api', expressjwt({secret: process.env.SECRET, algorithms:["HS256"]}))
 app.use('/api/issues', require('./routes/issuesRouter'))
-// app.use('/api/comments', require('./routes/commentsRouter'))
+app.use('/api/comments', require('./routes/commentsRouter'))
 
 app.use((err, req, res, next) => {
     console.log(err)
