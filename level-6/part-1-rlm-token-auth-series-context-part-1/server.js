@@ -15,9 +15,9 @@ mongoose.connect(
   )
   
 
-  app.use('/auth', require('./routes/authRouter'))
-  app.use('/level6', expressjwt({secret:process.env.SECRET, algorithms: ["HS256"]}))
-  app.use('/level6/todo', require('./routes/todoRouter.js'))
+  app.use('/api/auth', require('./routes/authRouter'))
+  app.use('/api/level6', expressjwt({secret:process.env.SECRET, algorithms: ["HS256"]}))
+  app.use('/api/level6/todo', require('./routes/todoRouter.js'))
   
   app.use((err, req, res, next) => {
     console.log(err)
