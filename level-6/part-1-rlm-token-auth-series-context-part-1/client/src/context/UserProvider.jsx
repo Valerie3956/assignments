@@ -3,6 +3,14 @@ import axios from "axios"
 
 export const UserContext = React.createContext()
 
+const userAxios = axios.create()
+
+userAxios.interceptors.request.use(config => {
+    const token = localStorage.getItem('token')
+    config.headers.Authorization  = `Bearer ${token}`
+    return config
+})
+
 export default function UserProvider(props) {
 
     const initState = { 
@@ -33,6 +41,7 @@ export default function UserProvider(props) {
             const { user, token } = res.data
             localStorage.setItem("token", token)
             localStorage.setItem("user", JSON.stringify(user))
+            getUserTodos()
             setUserState(prevUserState => ({
                 ...prevUserState,
                 user,
@@ -52,13 +61,36 @@ function logout(){
     })
 }
 
+function getUserTodos(){
+    userAxios.get("/api/level6/todo/user")
+    .then(res => {
+        setUserState(prevState => ({
+            ...prevState,
+            todos: res.data
+        }))
+    })
+    .catch(err => console.log(err.response.data.errMsg))
+}
+
+function addTodo(newTodo){
+    userAxios.post("/api/level6/todo", newTodo)
+    .then(res => {
+        setUserState(prevState => ({
+            ...prevState,
+            todos: [...prevState.todos, res.data]
+        }))
+    })
+    .catch(err => console.log(err.response.data.errMsg))
+}
+
     return (
         <UserContext.Provider
             value={{
                 ...userState,
                 signup,
                 login,
-                logout
+                logout,
+                addTodo
             }}
 
         >

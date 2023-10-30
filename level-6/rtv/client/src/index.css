@@ -1,0 +1,85 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body{
+  font-family: 'gideon roman';
+}
+
+/* navbar */
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  max-height: 10vh;
+  width:100%;
+  background-color: #80a1c2;
+  color: #a62c2c
+}
+
+.navbar > div {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* main */
+
+.main{
+  height: 90vh;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #faf2e6;
+}
+
+/* auth page  */
+
+.authPage{
+position:absolute;
+top:50%;
+transform: translateY(-50%);
+
+}
+
+.authPage > h1 {
+  text-align: center;
+}
+
+.authForm{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin:30px
+}
+
+.authForm > input {
+  margin: 10px;
+  height: 30px;
+  width: 300px;
+  border:solid 1px #80a1c2;
+  background-color: #faf2e6
+}
+
+.button{
+  padding:10px;
+  height: 30px;
+  width: 100px;
+  margin:10px;
+  background-color: #faf2e6;
+  border:solid 1px #80a1c2;
+}
+
+/* colors:
+deep red #a62c2c
+soft red #bf4146
+ivory #faf2e6
+soft blue #80a1c2
+deep blue #6683a9 */
