@@ -2,13 +2,14 @@ import { useState, useContext } from 'react'
 import Navbar from './components/navbar'
 import Auth from './components/auth'
 import Profile from './components/profile'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import Public from './components/public'
+import { Routes, Route, Navigate} from 'react-router-dom'
 import {UserContext} from "./context/userContext"
 
 function App() {
 
   const {token, logout} = useContext(UserContext)
-
+console.log(token)
   return (
 <>
 <Navbar logout = {logout}/>
@@ -22,6 +23,10 @@ function App() {
   <Route 
     path = "/profile"
     element = {<Profile />}/>
+
+<Route 
+    path = "/public"
+    element = {<Public />}/>
 </Routes>
 
 

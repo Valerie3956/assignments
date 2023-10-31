@@ -77,6 +77,19 @@ transform: translateY(-50%);
   border:solid 1px #80a1c2;
 }
 
+.issueList{
+  overflow:auto
+}
+
+.issue{
+  margin:20px;
+}
+
+.comment{
+  border: solid 1px #6683a9;
+  margin:10px
+}
+
 /* colors:
 deep red #a62c2c
 soft red #bf4146

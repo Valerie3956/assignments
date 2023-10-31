@@ -45,8 +45,8 @@ export default function UserProvider(props) {
                 localStorage.setItem("user", JSON.stringify(user))
                 setUserState(prevUserState => ({
                     ...prevUserState,
-                    user
-
+                    user,
+                    token 
                 }))
             })
             .catch(err => console.log(err.response.data.errMsg))
@@ -96,7 +96,8 @@ console.log(userState)
                 login,
                 logout,
                 addIssue,
-                getUserIssues
+                getUserIssues,
+                userAxios
             }}
 
         >
