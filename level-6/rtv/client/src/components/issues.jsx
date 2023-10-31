@@ -55,6 +55,16 @@ export default function Issues(props){
         ))
 }
 
+//delete comment
+
+function deleteComment(commentId){
+  userAxios.delete(`api/comments/${commentId}`)
+  .then(setComments(prevComments => prevComments.filter(comment => comment._id !== commentId)))
+  .catch(err => console.log(err.response.data.errMsg))
+}
+
+//edit comment
+
 
 //stuff that gets rendered
   return (
@@ -66,7 +76,10 @@ export default function Issues(props){
 </div>
 {toggle? 
 <>
-{comments.map(comment => <Comment {...comment} key = {comment._id}/>)}
+{comments.map(comment => <Comment 
+{...comment}
+ key = {comment._id}
+ deleteComment = {deleteComment}/>)}
 <CommentForm 
 btnText = "Submit Comment" 
 toggle = {() => setToggle(prevToggle => !prevToggle)}
