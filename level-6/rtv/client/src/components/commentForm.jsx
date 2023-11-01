@@ -27,11 +27,16 @@ const {handleChange, handleSubmit, btnText, toggle, inputs} = props
   return (
     <div>
 
-    <form className = "form" onSubmit={handleSubmit}>
+    <form className = "form" 
+    onSubmit={(e) => {
+      e.preventDefault()
+      handleSubmit()
+    }}
+    >
       <input 
         type="text" 
         name="content" 
-        value={inputs.content} 
+        value={inputs} 
         onChange={handleChange} 
         placeholder="comment"/>
       <button className = "button">{btnText}</button>

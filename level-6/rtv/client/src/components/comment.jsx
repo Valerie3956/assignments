@@ -1,5 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
 import { UserContext } from '../context/userContext'
+import CommentForm from './commentForm'
 
 
 
@@ -8,17 +9,24 @@ export default function Comment(props){
     const {user : {_id}} = useContext(UserContext)
     const userId = _id
     
+    const {content, user, deleteComment, handleChange, handleEdit, inputs} = props
+
+    const [toggle, setToggle] = useState(false)
     
-    const {content, user, deleteComment} = props
 
 
-console.log(user)
 
     return(
         <div className = "comment">
         <p>{content}</p>
         {user === userId && <>
-        <button className = "button">Edit</button>
+        {toggle? <CommentForm 
+        btnText = "Submit Edit" 
+        toggle = {() => setToggle(prevToggle => !prevToggle)}
+        handleChange = {handleChange}
+        handleSubmit = {(e) => { handleEdit(props._id, inputs)}}
+        inputs = {inputs.content}
+        /> : <button className = "button" onClick = {() => setToggle(prevToggle => !prevToggle)}>Edit</button>}
         <button className = "button" onClick = {() => deleteComment(props._id)}>Delete</button>
         </>}
         </div>

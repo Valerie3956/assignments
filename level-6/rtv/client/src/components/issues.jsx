@@ -32,6 +32,7 @@ export default function Issues(props){
   //function for the new comment form
   function handleChange(e){
     const {name, value} = e.target
+    console.log(name, value)
     setInputs(prevInputs => ({
         ...prevInputs,
       [name]: value
@@ -65,6 +66,16 @@ function deleteComment(commentId){
 
 //edit comment
 
+function handleEdit(id, inputs){
+console.log(inputs)
+console.log(id)
+// console.log(inputs)
+  userAxios.put(`/api/comments/${id}`, inputs)
+  .then(res => {
+    setComments(prevComments => prevComments.map(comment => comment._id === id? comment : res.data))
+  })
+  .catch(err => console.log(err.response.data.errMsg))
+}
 
 //stuff that gets rendered
   return (
@@ -79,13 +90,18 @@ function deleteComment(commentId){
 {comments.map(comment => <Comment 
 {...comment}
  key = {comment._id}
- deleteComment = {deleteComment}/>)}
+ deleteComment = {deleteComment}
+ handleChange = {handleChange}
+ handleEdit = {handleEdit}
+ inputs = {inputs}
+ />)
+ }
 <CommentForm 
 btnText = "Submit Comment" 
 toggle = {() => setToggle(prevToggle => !prevToggle)}
 handleChange = {handleChange}
 handleSubmit = {handleSubmit}
-inputs = {inputs}
+inputs = {inputs.content}
 /> 
 </>
 : <FontAwesomeIcon icon={faComment} onClick = {() => setToggle(prevToggle => !prevToggle)} />}
