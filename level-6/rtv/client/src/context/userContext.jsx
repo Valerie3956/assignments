@@ -17,14 +17,15 @@ export default function UserProvider(props) {
         user: JSON.parse(localStorage.getItem("user")) || {},
         token: localStorage.getItem("token") || "",
         issues: [],
-        comments: []
+        comments: [],
+        errMsg: ""
     }
 
     const [userState, setUserState] = useState(initState)
 
     function signup(credentials) {
         axios.post("/user/signup", credentials)
-            .then(res =>  {
+            .then(res => {
                 const { user, token } = res.data
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
@@ -34,7 +35,7 @@ export default function UserProvider(props) {
                     token
                 }))
             })
-            .catch(err => console.log(err.response.data.errMsg))
+            .catch(err => handleAuthError(err.response.data.errMsg))
     }
 
     function login(credentials) {
@@ -46,13 +47,13 @@ export default function UserProvider(props) {
                 setUserState(prevUserState => ({
                     ...prevUserState,
                     user,
-                    token 
+                    token
                 }))
             })
-            .catch(err => console.log(err.response.data.errMsg))
+            .catch(err => handleAuthError(err.response.data.errMsg))
     }
 
-// console.log(userState)
+    // console.log(userState)
 
     function logout() {
         localStorage.removeItem("token")
@@ -61,69 +62,85 @@ export default function UserProvider(props) {
             user: {},
             token: "",
             issues: [],
-            comments:[]
+            comments: []
         })
     }
 
-    function addIssue(newIssue){
+    function handleAuthError(errMsg) {
+        setUserState(prevState => ({
+            ...prevState,
+            errMsg
+        }))
+    }
+
+    function resetAuthError(){
+        setUserState(prevState => ({
+            ...prevState,
+            errMsg:""
+        }))
+    }
+
+    function addIssue(newIssue) {
         userAxios.post("/api/issues", newIssue)
-        .then(res => {
-            setUserState(prevState => ({
-                ...prevState,
-                issues: [...prevState.issues, res.data]
-            }))
-        })
-        .catch(err => console.log(err.response.data.errMsg))
+            .then(res => {
+                setUserState(prevState => ({
+                    ...prevState,
+                    issues: [...prevState.issues, res.data]
+                }))
+            })
+            .catch(err => console.log(err.response.data.errMsg))
     }
 
-    function getUserIssues(){
+    function getUserIssues() {
         userAxios.get("/api/issues/user")
-        .then(res => {
-            setUserState(prevState => ({
-                ...prevState,
-                issues: res.data
-            }))
-        })
-        .catch(err => console.log(err.response.data.errMsg))
+            .then(res => {
+                setUserState(prevState => ({
+                    ...prevState,
+                    issues: res.data
+                }))
+            })
+            .catch(err => console.log(err.response.data.errMsg))
     }
 
-//edit issue
+    //edit issue
 
-function handleIssueEdit(inputs, issueId){
-    // console.log(issueId)
-userAxios.put(`api/issues/${issueId}`, inputs)
-.then(setUserState(prevUserState => ({
-    ...prevUserState,
-    issues: prevUserState.issues.map(issue => {
-        if(issue._id !== issueId){
-            return issue
-        } else {
-            return {...issue,
-                inputs}
-        }
-    })
-})
-)
-)
-.catch(err => console.log(err.response.data.errMsg))
-}
+    function handleIssueEdit(inputs, issueId) {
+        // console.log(issueId)
+        userAxios.put(`api/issues/${issueId}`, inputs)
+            .then(setUserState(prevUserState => ({
+                ...prevUserState,
+                issues: prevUserState.issues.map(issue => {
+                    if (issue._id !== issueId) {
+                        return issue
+                    } else {
+                        return {
+                            ...issue,
+                            inputs
+                        }
+                    }
+                })
+            })
+            )
+            )
+            .catch(err => console.log(err.response.data.errMsg))
+    }
 
-//delete issue
+    //delete issue
 
-function deleteIssue(issueId){
-    console.log(userState)
-    console.log(issueId)
-    userAxios.delete(`/api/issues/${issueId}`)
-    .then(setUserState(prevUserState => ({
-        ...prevUserState,
-        issues: prevUserState.issues.filter(issue => issue._id !== issueId)
-    })
-    ))
-    .catch(err => console.log(err.response.data.errMsg))
-    userAxios.delete(`/api/comments/issue/${issueId}`)
-    .then(res => console.log(res))
-    .catch(err => console.log(err.response.data.errMsg))
-}
+    function deleteIssue(issueId) {
+        console.log(userState)
+        console.log(issueId)
+        userAxios.delete(`/api/issues/${issueId}`)
+            .then(setUserState(prevUserState => ({
+                ...prevUserState,
+                issues: prevUserState.issues.filter(issue => issue._id !== issueId)
+            })
+            ))
+            .catch(err => console.log(err.response.data.errMsg))
+        userAxios.delete(`/api/comments/issue/${issueId}`)
+            .then(res => console.log(res))
+            .catch(err => console.log(err.response.data.errMsg))
+    }
 
 
     return (
@@ -137,7 +154,8 @@ function deleteIssue(issueId){
                 getUserIssues,
                 userAxios,
                 deleteIssue,
-                handleIssueEdit
+                handleIssueEdit,
+                resetAuthError
             }}
 
         >

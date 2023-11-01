@@ -5,27 +5,38 @@ import Profile from './components/profile'
 import Public from './components/public'
 import { Routes, Route, Navigate} from 'react-router-dom'
 import {UserContext} from "./context/userContext"
+import ProtectedRoute from './components/protectedRoute'
 
 function App() {
 
   const {token, logout} = useContext(UserContext)
   return (
 <>
-<Navbar logout = {logout}/>
+{ token && <Navbar logout = {logout}/> }
 
 <Routes >
+
   <Route 
   path = "/"
   element = {token ? <Navigate to ="/profile" /> : <Auth />}
   />
 
+
   <Route 
     path = "/profile"
-    element = {<Profile />}/>
+    element = { <ProtectedRoute token = {token} redirectTo = "/">
+    <Profile />
+    </ProtectedRoute> }/>
+
+
 
 <Route 
     path = "/public"
-    element = {<Public />}/>
+    element = {<ProtectedRoute token = {token} redirectTo = "/">
+    <Public />
+    </ProtectedRoute>}/>
+
+
 </Routes>
 
 
