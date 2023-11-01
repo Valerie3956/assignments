@@ -2,6 +2,7 @@ import React, {useState, useContext, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import CommentForm from "./commentForm"
+import IssueForm from './issueForm'
 import Comment from './comment'
 import { UserContext } from '../context/userContext'
 
@@ -14,11 +15,13 @@ export default function Issues(props){
   const [toggle, setToggle] = useState(false)
   const [comments, setComments] = useState([])
   const [inputs, setInputs] = useState(initInputs)
+  const [issueToggle, setIssueToggle] = useState(false)
 
-  const {title, description, _id} = props
+  const {title, description, _id, user} = props
 
 
-  const {userAxios} = useContext(UserContext)
+  const {userAxios, deleteIssue, handleIssueEdit, ...userState} = useContext(UserContext)
+
 
   //get all comments for this issue
   useEffect(() => {
@@ -32,7 +35,6 @@ export default function Issues(props){
   //function for the new comment form
   function handleChange(e){
     const {name, value} = e.target
-    console.log(name, value)
     setInputs(prevInputs => ({
         ...prevInputs,
       [name]: value
@@ -42,7 +44,6 @@ export default function Issues(props){
   function handleSubmit(e){
     e.preventDefault()
     userAxios.post(`/api/comments/${_id}`, inputs)
-
     .then(res => addComment(res.data))
     .catch(err => console.log(err.response.data.errMsg))
     
@@ -67,9 +68,7 @@ function deleteComment(commentId){
 //edit comment
 
 function handleEdit(id, inputs){
-console.log(inputs)
-console.log(id)
-// console.log(inputs)
+
   userAxios.put(`/api/comments/${id}`, inputs)
   .then(res => {
     setComments(prevComments => prevComments.map(comment => comment._id === id? comment : res.data))
@@ -77,14 +76,35 @@ console.log(id)
   .catch(err => console.log(err.response.data.errMsg))
 }
 
+
+
 //stuff that gets rendered
   return (
     <div className="issue">
+    {/* render issue */}
 <h2>Title: {title}</h2>
 <h3>Description: {description}</h3>
+{/* conditional rendering of edit/delete buttons for issues depending on whether the issues belong to the user */}
+{user === userState.user._id && <>
+        {issueToggle? 
+        <>
+        <IssueForm 
+        submit = {handleIssueEdit}
+        btnText = "Edit Issue"
+        issueId = {_id}
+        initTitle = {title}
+        initDescription = {description}
+        />
+        <button className = "button" onClick = {() => setIssueToggle(prevToggle => !prevToggle)}>Close</button>
+        </>
+         : 
+         <button className = "button" onClick = {() => setIssueToggle(prevToggle => !prevToggle)}>Edit</button>}
+        <button className = "button" onClick = {() => deleteIssue(props._id)}>Delete</button>
+        </>}
 <div className = "icons">
 <h3><FontAwesomeIcon icon={faThumbsUp} /><FontAwesomeIcon icon={faThumbsDown} /></h3>
 </div>
+{/* toggle comments view on or off */}
 {toggle? 
 <>
 {comments.map(comment => <Comment 
@@ -96,6 +116,7 @@ console.log(id)
  inputs = {inputs}
  />)
  }
+ {/* add a form at the bottom of comments to add a comment */}
 <CommentForm 
 btnText = "Submit Comment" 
 toggle = {() => setToggle(prevToggle => !prevToggle)}

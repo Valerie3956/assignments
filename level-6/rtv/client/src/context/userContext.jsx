@@ -52,7 +52,7 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
-console.log(userState)
+// console.log(userState)
 
     function logout() {
         localStorage.removeItem("token")
@@ -87,6 +87,44 @@ console.log(userState)
         .catch(err => console.log(err.response.data.errMsg))
     }
 
+//edit issue
+
+function handleIssueEdit(inputs, issueId){
+    // console.log(issueId)
+userAxios.put(`api/issues/${issueId}`, inputs)
+.then(setUserState(prevUserState => ({
+    ...prevUserState,
+    issues: prevUserState.issues.map(issue => {
+        if(issue._id !== issueId){
+            return issue
+        } else {
+            return {...issue,
+                inputs}
+        }
+    })
+})
+)
+)
+.catch(err => console.log(err.response.data.errMsg))
+}
+
+//delete issue
+
+function deleteIssue(issueId){
+    console.log(userState)
+    console.log(issueId)
+    userAxios.delete(`/api/issues/${issueId}`)
+    .then(setUserState(prevUserState => ({
+        ...prevUserState,
+        issues: prevUserState.issues.filter(issue => issue._id !== issueId)
+    })
+    ))
+    .catch(err => console.log(err.response.data.errMsg))
+    userAxios.delete(`/api/comments/issue/${issueId}`)
+    .then(res => console.log(res))
+    .catch(err => console.log(err.response.data.errMsg))
+}
+
 
     return (
         <UserContext.Provider
@@ -97,7 +135,9 @@ console.log(userState)
                 logout,
                 addIssue,
                 getUserIssues,
-                userAxios
+                userAxios,
+                deleteIssue,
+                handleIssueEdit
             }}
 
         >

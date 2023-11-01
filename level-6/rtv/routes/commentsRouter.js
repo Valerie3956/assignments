@@ -102,6 +102,18 @@ commentsRouter.delete("/:commentId", (req, res, next) => {
     )
   })
 
+  //delete all comments for an issue
+
+  commentsRouter.delete("/issue/:issueId", (req, res, next) => {
+    Comment.deleteMany({issue : req.params.issueId}, (err, deletedComments) => {
+      if(err){
+        res.status(500)
+        return next(err)
+      }
+      return res.status(200).send("successfully deleted all comments for the issue")
+    })
+  })
+
 //modify comment
 
 // commentsRouter.put("/:commentId", (req, res, next) => {

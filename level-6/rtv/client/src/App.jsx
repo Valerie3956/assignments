@@ -9,7 +9,6 @@ import {UserContext} from "./context/userContext"
 function App() {
 
   const {token, logout} = useContext(UserContext)
-console.log(token)
   return (
 <>
 <Navbar logout = {logout}/>

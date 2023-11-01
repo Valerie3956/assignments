@@ -16,7 +16,7 @@ useEffect(() => {
     return (
         <div className = "main">
             <h2>Welcome {username}!</h2>
-        <IssueForm addIssue = {addIssue}/>
+        <IssueForm submit = {addIssue} btnText = "Add Issue"/>
         <IssueList issues = {issues} />
         </div>
     )

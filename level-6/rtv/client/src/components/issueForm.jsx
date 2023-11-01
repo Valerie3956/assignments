@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 
-const initInputs = {
-  title: "",
-  description: ""
-}
 
 export default function IssueForm(props){
+  
+  const initInputs = {
+    title: props.initTitle || "",
+    description: props.initDescription || ""
+  }
+
   const [inputs, setInputs] = useState(initInputs)
 
-const {addIssue} = props
+const {submit, btnText, issueId, initTitle, initDescription} = props
 
   function handleChange(e){
     const {name, value} = e.target
@@ -19,10 +21,11 @@ const {addIssue} = props
   }
 
   function handleSubmit(e){
-    e.preventDefault()
-    addIssue(inputs)
+    // e.preventDefault()
+    submit(inputs, issueId)
     setInputs(initInputs)
   }
+
 
   const { title, description } = inputs
   return (
@@ -39,7 +42,7 @@ const {addIssue} = props
         value={description} 
         onChange={handleChange} 
         placeholder="Description"/>
-      <button className = "button">Add Issue</button>
+      <button className = "button">{btnText}</button>
     </form>
   )
 }
