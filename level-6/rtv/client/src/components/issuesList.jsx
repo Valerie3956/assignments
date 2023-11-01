@@ -2,10 +2,10 @@ import React from 'react'
 import Issues from './issues.jsx'
 
 export default function IssueList(props){
-  const {issues} = props
+  const {issues, upVoteIssue, downVoteIssue} = props
   return (
     <div className="issueList">
-{issues.map(issue => <Issues {...issue} key = {issue._id}/>)}
+{issues.map(issue => <Issues {...issue} key = {issue._id} upVoteIssue = {() => upVoteIssue(issue._id)} downVoteIssue = {() => downVoteIssue(issue._id)}/>)}
     </div>
   )
 }

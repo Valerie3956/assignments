@@ -142,6 +142,21 @@ export default function UserProvider(props) {
             .catch(err => console.log(err.response.data.errMsg))
     }
 
+    // handle upVote
+
+    function upVote(issueId, inputs){
+        setUserState(prevUserState => 
+            ({ ...prevUserState, 
+                issues: prevUserState.issues.map(issue => issueId !== issue._id ? issue : inputs) }))
+    }
+
+    //handle downVote
+
+    function downVote(issueId, inputs){
+        setUserState(prevUserState => 
+            ({ ...prevUserState, 
+                issues: prevUserState.issues.map(issue => issueId !== issue._id ? issue : inputs) }))
+    }
 
     return (
         <UserContext.Provider
@@ -155,7 +170,9 @@ export default function UserProvider(props) {
                 userAxios,
                 deleteIssue,
                 handleIssueEdit,
-                resetAuthError
+                resetAuthError,
+                upVote,
+                downVote
             }}
 
         >

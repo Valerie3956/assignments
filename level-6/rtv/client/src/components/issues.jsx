@@ -17,7 +17,7 @@ export default function Issues(props){
   const [inputs, setInputs] = useState(initInputs)
   const [issueToggle, setIssueToggle] = useState(false)
 
-  const {title, description, _id, user} = props
+  const {title, description, _id, user, upVoteIssue, downVoteIssue, likedUsers, dislikedUsers} = props
 
 
   const {userAxios, deleteIssue, handleIssueEdit, ...userState} = useContext(UserContext)
@@ -42,7 +42,7 @@ export default function Issues(props){
   }
 
   function handleSubmit(e){
-    e.preventDefault()
+    // e.preventDefault()
     userAxios.post(`/api/comments/${_id}`, inputs)
     .then(res => addComment(res.data))
     .catch(err => console.log(err.response.data.errMsg))
@@ -102,7 +102,16 @@ function handleEdit(id, inputs){
         <button className = "button" onClick = {() => deleteIssue(props._id)}>Delete</button>
         </>}
 <div className = "icons">
-<h3><FontAwesomeIcon icon={faThumbsUp} /><FontAwesomeIcon icon={faThumbsDown} /></h3>
+  {/* upvote button */}
+  <div>
+  <h3>{likedUsers.length}</h3>
+<h3><FontAwesomeIcon icon={faThumbsUp} onClick = {upVoteIssue}/></h3>
+  </div>
+{/* downvote button */}
+<div>
+<h3>{dislikedUsers.length}</h3>
+<h3><FontAwesomeIcon icon={faThumbsDown} onClick = {downVoteIssue} /></h3>
+</div>
 </div>
 {/* toggle comments view on or off */}
 {toggle? 
@@ -125,7 +134,13 @@ handleSubmit = {handleSubmit}
 inputs = {inputs.content}
 /> 
 </>
-: <FontAwesomeIcon icon={faComment} onClick = {() => setToggle(prevToggle => !prevToggle)} />}
+: 
+<div>
+<h3>{comments.length}</h3>
+<FontAwesomeIcon icon={faComment} onClick = {() => setToggle(prevToggle => !prevToggle)} />
+</div>
+
+}
     </div>
   )
 }
