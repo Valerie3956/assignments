@@ -17,9 +17,7 @@ runRouter.get('/getAll', async(req, res, next) => {
             }))
             return {...user.withoutPassword(), userRuns : runsWithComments, lastRun: runsWithComments[runsWithComments.length -1]}
         }))
-
         return res.status(200).send(allData)
-
     }catch(err){
         res.status(500)
         return next(err)
@@ -30,22 +28,16 @@ runRouter.get('/getAll', async(req, res, next) => {
 
 runRouter.get("/user", async(req, res, next) => {
     try{
-
-const userRuns = await Run.find({user: req.auth._id})
+        const userRuns = await Run.find({user: req.auth._id})
             const runsWithComments = await Promise.all( userRuns.map(async run => {
-                const comments = await Comment.find({run: run._id})
-                return {...run.toObject(), comments}
+            const comments = await Comment.find({run: run._id})
+            return {...run.toObject(), comments}
             }))
             return res.status(200).send(runsWithComments)
         }catch(err){
             res.status(500)
             return next(err)
         }
-
-
-
-
- 
 })
 
 //add new run
@@ -62,7 +54,6 @@ runRouter.post("/", async(req, res, next) => {
         res.status(500)
         return next(err)
     }
-
 })
 
 //delete run
@@ -97,7 +88,6 @@ return res.status(201).send(result)
     res.status(500)
     return next(err)
 }
-
 })
 
 
