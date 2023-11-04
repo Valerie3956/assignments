@@ -16,11 +16,11 @@ export default function UserProvider(props) {
     const initState = {
         user: JSON.parse(localStorage.getItem("user")) || {},
         token: localStorage.getItem("token") || "",
-        // totalMiles: 0,
         errMsg: ""
     }
 
     const [userState, setUserState] = useState(initState)
+    const [userRuns, setUserRuns] = useState([])
 
     function signup(credentials) {
         axios.post("/auth/signup", credentials)
@@ -37,22 +37,31 @@ export default function UserProvider(props) {
             .catch(err => handleAuthError(err.response.data.errMsg))
     }
 
-    function login(credentials) {
-        axios.post("/auth/login", credentials)
-            .then(res => {
-                const { user, token } = res.data
-                localStorage.setItem("token", token)
-                localStorage.setItem("user", JSON.stringify(user))
-                setUserState(prevUserState => ({
-                    ...prevUserState,
-                    user,
-                    token
-                }))
-            })
-            .catch(err => handleAuthError(err.response.data.errMsg))
-    }
+    async function login (credentials) {
+        try{
+            const loginResponse = await axios.post("/auth/login", credentials)
+            const { user, token } = loginResponse.data
+            localStorage.setItem("token", token)
+            localStorage.setItem("user", JSON.stringify(user))
+            setUserState(prevUserState => ({
+                ...prevUserState,
+                user,
+                token
+            }))
 
-    console.log(userState)
+            const userRunResponse = await userAxios.get("/api/run/user")
+            setUserRuns(userRunResponse.data)
+        }
+        
+            catch(err){
+                if(err.response){handleAuthError(err.response.data.errMsg)
+            } else {
+        console.log(err.response.data.errMsg)
+            }
+    }
+}
+    
+
 
     function logout() {
         localStorage.removeItem("token")
@@ -60,9 +69,9 @@ export default function UserProvider(props) {
         setUserState({
             user: {},
             token: "",
-            issues: [],
-            comments: []
+            errMsg:""
         })
+        setUserRuns([])
     }
 
     function handleAuthError(errMsg) {
@@ -79,6 +88,30 @@ export default function UserProvider(props) {
         }))
     }
 
+    //addRun
+
+    async function addRun(newRun){
+        try{
+            //add run to DB
+            const runResponse = await userAxios.post("api/run", newRun)
+            // console.log(runResponse.data.runUser.totalMiles)
+            //updates userState
+            setUserState(prevUserState => ({
+                ...prevUserState,
+                user:{
+                    ...prevUserState.user,
+                    totalMiles: runResponse.data.runUser.totalMiles
+                }
+            }))
+            //update user runs in state
+            const userRunResponse = await userAxios.get("/api/run/user")
+            setUserRuns(userRunResponse.data)
+        } catch(err){
+            console.log(err)
+        }
+
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -88,6 +121,7 @@ export default function UserProvider(props) {
                 logout,
                 userAxios,
                 resetAuthError,
+                addRun
             }}
 
         >

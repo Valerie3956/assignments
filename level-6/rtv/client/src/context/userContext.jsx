@@ -80,6 +80,8 @@ export default function UserProvider(props) {
         }))
     }
 
+//add issue
+
     function addIssue(newIssue) {
         userAxios.post("/api/issues", newIssue)
             .then(res => {
