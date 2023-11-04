@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import AuthForm from './authForm'
-// import { UserContext } from '../context/userContext'
+import { UserContext } from '../context/userContext'
 
 
 export default function Auth() {
@@ -10,7 +10,7 @@ export default function Auth() {
     const [inputs, setInputs] = useState(initInputs)
     const [toggle, setToggle] = useState(false)
 
-    // const { signup, login, errMsg, resetAuthError } = useContext(UserContext)
+    const { signup, login, errMsg, resetAuthError } = useContext(UserContext)
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -47,7 +47,7 @@ export default function Auth() {
                             handleSubmit={handleLogin}
                             inputs={inputs}
                             btnText="Login"
-                            // errMsg={errMsg}
+                            errMsg={errMsg}
                         />
                         <p onClick={toggleForm}>Not a member?</p>
                     </>
@@ -58,7 +58,7 @@ export default function Auth() {
                             handleSubmit={handleSignup}
                             inputs={inputs}
                             btnText="Sign up"
-                            // errMsg={errMsg}
+                            errMsg={errMsg}
                         />
                         <p onClick={toggleForm}>Already a member?</p>
                     </>

@@ -10,6 +10,11 @@ export default defineConfig({
         target: 'http://localhost:9000',
         changeOrigin: true,
         secure: false,
+      },
+      '/auth': {
+        target: 'http://localhost:9000',
+        changeOrigin: true,
+        secure: false,
       }
     },
     port: 5173,
