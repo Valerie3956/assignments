@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import {BrowserRouter} from "react-router-dom"
 import UserProvider from './context/userContext';
+import RunProvider from './context/runContext.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -12,9 +13,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
     <UserProvider>
+      <RunProvider>
+
 
     <App />
 
+      </RunProvider>
     </UserProvider>
 
 

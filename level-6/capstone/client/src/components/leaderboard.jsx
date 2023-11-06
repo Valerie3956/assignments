@@ -1,24 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
-import { UserContext } from '../context/userContext'
+// import { UserContext } from '../context/userContext'
 import Runner from './runner'
+import { RunContext } from '../context/runContext'
 
 
-export default function Leaderboard(props){
+export default function Leaderboard(){
     
-    const {userAxios} = useContext(UserContext)
-    
-    const [runners, setRunners] = useState([])
-    
-    useEffect(() => {
-        userAxios.get("api/run/getAll")
-        .then(res => setRunners(res.data))
-        .catch(err => console.log(err.response.data.errMsg))
-    }, [])
 
-    const sortedRunners = runners.sort((a, b) => b.totalMiles - a.totalMiles)
+    const {runs} = useContext(RunContext)
+    console.log(runs)
 
-    console.log(sortedRunners)
+    const sortedRunners = runs.sort((a, b) => b.totalMiles - a.totalMiles)
+
+
 
     return(
         <div className = "main">

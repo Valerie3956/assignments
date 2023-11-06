@@ -25,6 +25,18 @@ const runSchema = new Schema ({
         ref: "User",
         required: true
     },
+    starUsers:[{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    strongUsers:[{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    fireUsers:[{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }]
 })
 
 

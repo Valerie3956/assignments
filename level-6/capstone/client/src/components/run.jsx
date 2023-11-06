@@ -9,6 +9,11 @@ const {distance, time, pace, date, _id} = props
 const {deleteRun, editRun} = useContext(UserContext)
 
 const [toggle, setToggle] = useState(false)
+const [social, setSocial] = useState(false)
+
+function makeSocial(){
+  setSocial(true)
+}
 
 let runDate = date.split("T")[0]
 
@@ -26,6 +31,7 @@ return (
                             initPace = {pace} 
                             initDate = {date}/>
                             <button onClick={() => setToggle(prevToggle => !prevToggle)} className="smallButton">Close</button>
+                            <button className="smallButton" onClick={() => deleteRun(run._id)}>Delete Run</button>
                         </>
                         :
                         <div className="run"> 
@@ -35,8 +41,9 @@ return (
     <h3>Time: {time}</h3>
     <h3>Pace: {pace}</h3>
                             <button onClick={() => setToggle(prevToggle => !prevToggle)} className="smallButton">Edit Run</button>
-                        </div >}
+                        
                     <button className="smallButton" onClick={() => deleteRun(run._id)}>Delete Run</button>
+                        </div >}
                 </div>
   </>
 )

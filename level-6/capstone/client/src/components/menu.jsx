@@ -14,7 +14,7 @@ export default function Menu() {
             <div className="menu">
                 <div className="name">
                     <h1>{username}</h1>
-                    <h4>{totalMiles.toFixed(1)} miles ran to date</h4>
+                    {/* <h4>{totalMiles.toFixed(1)} miles ran to date</h4> */}
                 </div>
                 <h2 className="menuToggle" onClick={() => setToggle(prevToggle => !prevToggle)}>Menu</h2>
             </div>
