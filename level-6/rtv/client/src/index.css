@@ -71,7 +71,7 @@ transform: translateY(-50%);
 .button{
   padding:10px;
   height: 30px;
-  width: 100px;
+  
   margin:10px;
   background-color: #faf2e6;
   border:solid 1px #80a1c2;
@@ -88,6 +88,12 @@ transform: translateY(-50%);
 .comment{
   border: solid 1px #6683a9;
   margin:10px
+}
+
+.icons{
+  width:10vw;
+  display:flex;
+  justify-content: space-around;
 }
 
 /* colors:

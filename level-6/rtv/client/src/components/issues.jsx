@@ -83,6 +83,18 @@ function handleEdit(id, inputs){
     <div className="issue">
     {/* render issue */}
 <h2>Title: {title}</h2>
+<div className = "icons">
+  {/* upvote button */}
+  <div>
+  <h3>{likedUsers.length}</h3>
+<h3><FontAwesomeIcon icon={faThumbsUp} onClick = {upVoteIssue}/></h3>
+  </div>
+{/* downvote button */}
+<div>
+<h3>{dislikedUsers.length}</h3>
+<h3><FontAwesomeIcon icon={faThumbsDown} onClick = {downVoteIssue} /></h3>
+</div>
+</div>
 <h3>Description: {description}</h3>
 {/* conditional rendering of edit/delete buttons for issues depending on whether the issues belong to the user */}
 {user === userState.user._id && <>
@@ -101,29 +113,17 @@ function handleEdit(id, inputs){
          <button className = "button" onClick = {() => setIssueToggle(prevToggle => !prevToggle)}>Edit</button>}
         <button className = "button" onClick = {() => deleteIssue(props._id)}>Delete</button>
         </>}
-<div className = "icons">
-  {/* upvote button */}
-  <div>
-  <h3>{likedUsers.length}</h3>
-<h3><FontAwesomeIcon icon={faThumbsUp} onClick = {upVoteIssue}/></h3>
-  </div>
-{/* downvote button */}
-<div>
-<h3>{dislikedUsers.length}</h3>
-<h3><FontAwesomeIcon icon={faThumbsDown} onClick = {downVoteIssue} /></h3>
-</div>
-</div>
 {/* toggle comments view on or off */}
 {toggle? 
 <>
 {comments.map(comment => <Comment 
 {...comment}
- key = {comment._id}
- deleteComment = {deleteComment}
- handleChange = {handleChange}
- handleEdit = {handleEdit}
- inputs = {inputs}
- />)
+key = {comment._id}
+deleteComment = {deleteComment}
+handleChange = {handleChange}
+handleEdit = {handleEdit}
+inputs = {inputs}
+/>)
  }
  {/* add a form at the bottom of comments to add a comment */}
 <CommentForm 
