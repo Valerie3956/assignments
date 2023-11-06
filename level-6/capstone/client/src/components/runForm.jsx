@@ -5,12 +5,13 @@ export default function RunForm(props){
     const initInputs = { 
         distance: props.initDistance || 0, 
         time: props.initTime || "", 
-        pace: props.initPace || 0 
+        pace: props.initPace || 0 ,
+        date: props.initDate || ""
     }
 
     const [inputs, setInputs] = useState(initInputs)
 
-    const {btnText, submit} = props
+    const {btnText, submit, runId} = props
 
 //handle change
 
@@ -28,6 +29,8 @@ export default function RunForm(props){
 function paceCalculator(distance, time){
     const dist = distance
     const splitTime = time.split(":")
+
+    console.log(dist)
 
 //for those long runs
     if(splitTime.length === 3){
@@ -63,14 +66,22 @@ function paceCalculator(distance, time){
 //handle submit
 
 function handleSubmit(e){
-    e.preventDefault()
-    submit(inputs)
+    // e.preventDefault()
+    submit(inputs, runId)
     setInputs(initInputs)
   }
 
     return(
-        <div className = "main">
+        <div>
             <form className = "form" onSubmit = {handleSubmit}>
+            <label htmlFor = "date" >Date</label>
+                <input 
+                type = "date"
+                placeholder = "date"
+                name = "date"
+                onChange = {handleChange}
+                value = {inputs.date}
+                ></input>
                 <label htmlFor = "distance" >Distance</label>
                 <input 
                 type = "number"

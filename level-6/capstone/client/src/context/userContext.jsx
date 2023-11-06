@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios"
 
 export const UserContext = React.createContext()
@@ -22,6 +22,16 @@ export default function UserProvider(props) {
     const [userState, setUserState] = useState(initState)
     const [userRuns, setUserRuns] = useState([])
 
+    // log user runs at initial render
+
+    useEffect(() => {
+        userAxios.get("/api/run/user")
+            .then(res => setUserRuns(res.data))
+            .catch(err => console.log(err.response.data.errMsg))
+    }, [])
+
+    //signup
+
     function signup(credentials) {
         axios.post("/auth/signup", credentials)
             .then(res => {
@@ -37,8 +47,10 @@ export default function UserProvider(props) {
             .catch(err => handleAuthError(err.response.data.errMsg))
     }
 
-    async function login (credentials) {
-        try{
+    //login
+
+    async function login(credentials) {
+        try {
             const loginResponse = await axios.post("/auth/login", credentials)
             const { user, token } = loginResponse.data
             localStorage.setItem("token", token)
@@ -52,16 +64,17 @@ export default function UserProvider(props) {
             const userRunResponse = await userAxios.get("/api/run/user")
             setUserRuns(userRunResponse.data)
         }
-        
-            catch(err){
-                if(err.response){handleAuthError(err.response.data.errMsg)
-            } else {
-        console.log(err.response.data.errMsg)
-            }
-    }
-}
-    
 
+        catch (err) {
+            if (err.response) {
+                handleAuthError(err.response.data.errMsg)
+            } else {
+                console.log(err.response.data.errMsg)
+            }
+        }
+    }
+
+    //logout
 
     function logout() {
         localStorage.removeItem("token")
@@ -69,7 +82,7 @@ export default function UserProvider(props) {
         setUserState({
             user: {},
             token: "",
-            errMsg:""
+            errMsg: ""
         })
         setUserRuns([])
     }
@@ -81,24 +94,24 @@ export default function UserProvider(props) {
         }))
     }
 
-    function resetAuthError(){
+    function resetAuthError() {
         setUserState(prevState => ({
             ...prevState,
-            errMsg:""
+            errMsg: ""
         }))
     }
 
     //addRun
 
-    async function addRun(newRun){
-        try{
+    async function addRun(newRun) {
+        try {
             //add run to DB
             const runResponse = await userAxios.post("api/run", newRun)
             // console.log(runResponse.data.runUser.totalMiles)
             //updates userState
             setUserState(prevUserState => ({
                 ...prevUserState,
-                user:{
+                user: {
                     ...prevUserState.user,
                     totalMiles: runResponse.data.runUser.totalMiles
                 }
@@ -106,10 +119,37 @@ export default function UserProvider(props) {
             //update user runs in state
             const userRunResponse = await userAxios.get("/api/run/user")
             setUserRuns(userRunResponse.data)
-        } catch(err){
+        } catch (err) {
             console.log(err)
         }
 
+    }
+
+    //delete run
+
+    function deleteRun(runId) {
+        userAxios.delete(`/api/run/${runId}`)
+            .then(setUserRuns(prevUserRuns => prevUserRuns.filter(run => run._id !== runId)))
+            .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    //edit run
+    function editRun(inputs, runId) {
+
+        userAxios.put(`api/run/${runId}`, inputs)
+            .then(setUserRuns(prevUserRuns => prevUserRuns.map(run => {
+
+                if (run._id !== runId) {
+                    return run
+                } else if (run._id === runId) {
+                    return {
+                        ...run,
+                        inputs
+                    }
+                }
+            }
+            )))
+            .catch(err => console.log(err.response.data.errMsg))
     }
 
     return (
@@ -121,7 +161,10 @@ export default function UserProvider(props) {
                 logout,
                 userAxios,
                 resetAuthError,
-                addRun
+                addRun,
+                userRuns,
+                deleteRun,
+                editRun
             }}
 
         >

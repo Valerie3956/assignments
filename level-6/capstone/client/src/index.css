@@ -98,6 +98,7 @@ body {
   background-color: #e78467;
   color:#ffffff;
   width: 100vw;
+  z-index:9999
 }
 
 .link{
@@ -124,6 +125,53 @@ color: #ffffff;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+}
+
+/* main */
+
+.main{
+  position:relative;
+  height:84vh;
+  width:99vw;
+}
+
+/* run */
+
+.run{
+  margin:10px;
+}
+
+.run > h2 {
+  color:#ec6538;
+  padding:5px
+}
+
+.run > h3 {
+  color:#e78467;
+  padding: 5px
+}
+
+.editDeleteRuns{
+  display:flex;
+  justify-content: space-around;
+}
+
+.smallButton{
+  height: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30vw;
+  margin: 10px;
+  font-weight: 500;
+  color: #ffffff;
+  text-align:left ;
+  background-color: #e78467;
+  border: solid 1px #e78467;
+  transition:all 0.5s ease-in-out 
+}
+
+.smallButton:hover{
+  background-color: #ec6538;
 }
 
 /* colors: 

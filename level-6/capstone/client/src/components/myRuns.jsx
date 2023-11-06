@@ -1,10 +1,23 @@
 import React, { useState, useContext } from 'react'
+import { UserContext } from '../context/userContext'
+import Run from './run'
 
 
-export default function MyRuns(props){
-    return(
-        <div className = "main">
-            <h1>My Runs</h1>
+
+export default function MyRuns(props) {
+
+    const { userRuns } = useContext(UserContext)
+
+
+    //sort my runs chronologically
+    const sortedRuns = userRuns.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+
+    return (
+        <div className="main">
+            {sortedRuns.map(run => 
+            <Run {...run} key = {run._id}/>
+            )}
         </div>
     )
 }

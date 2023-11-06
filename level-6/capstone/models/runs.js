@@ -9,15 +9,15 @@ const runSchema = new Schema ({
     },
     time:{
         type: String,
-        requi: true
+        required: true
     },
     pace:{
         type: String,
-        requi: true
+        required: true
     },
-    dateCreated:{
+    date:{
         type: Date,
-        default: Date.now
+        required: true
     },
     user:
     {
