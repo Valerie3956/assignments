@@ -139,6 +139,9 @@ color: #ffffff;
 
 .run{
   margin:10px;
+  position:relative;
+  left:50%;
+  transform: translateX(-50%);
 }
 
 .run > h2 {
@@ -172,6 +175,37 @@ color: #ffffff;
 
 .smallButton:hover{
   background-color: #ec6538;
+}
+
+/* leaderboard */
+
+.title{
+  margin: 15px 0px 15px 5px;
+  color:#2e0531
+}
+
+.runner{
+  border: solid 2px #e78467;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top:15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  width:60vw;
+  position:relative;
+  left:50%;
+  transform: translateX(-50%);
+}
+
+.runner:first-of-type{
+  border: solid 4px #2e0531;
+  background-color: #ec6538;
+  border-radius: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 /* colors: 
