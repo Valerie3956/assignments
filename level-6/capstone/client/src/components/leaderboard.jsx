@@ -1,6 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-import axios from 'axios'
-// import { UserContext } from '../context/userContext'
 import Runner from './runner'
 import { RunContext } from '../context/runContext'
 
@@ -9,7 +7,6 @@ export default function Leaderboard(){
     
 
     const {runs, getAllRuns} = useContext(RunContext)
-    console.log(runs)
 
     useEffect (() => {
         getAllRuns()

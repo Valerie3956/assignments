@@ -16,8 +16,9 @@ export default function MyRuns(props) {
     return (
         <div className="main">
             {sortedRuns.map(run => 
-            <Run {...run} key = {run._id}/>
+            <Run {...run} key = {run._id} isMyRunsPage = {true} />
             )}
+
         </div>
     )
 }

@@ -107,7 +107,7 @@ export default function UserProvider(props) {
         try {
             //add run to DB
             const runResponse = await userAxios.post("api/run", newRun)
-            // console.log(runResponse.data.runUser.totalMiles)
+            
             //updates userState
             setUserState(prevUserState => ({
                 ...prevUserState,

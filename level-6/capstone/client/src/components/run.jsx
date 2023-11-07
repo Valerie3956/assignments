@@ -9,48 +9,29 @@ import Comment from './comment'
 
 export default function Run(props) {
 
-  const { distance, time, pace, date, _id, starUsers, medalUsers, runningstarUsers, addStar, addRunnerDude, addMedal, comments } = props
+  const { distance, time, pace, date, _id, starUsers, medalUsers, runningstarUsers, addStar, addRunnerDude, addMedal, comments, isMyRunsPage } = props
 
   const { deleteRun, editRun } = useContext(UserContext)
 const {runAxios} = useContext(RunContext)
-  const initInputs = {
-    content: comments.content || ""
-  }
 
-  const [inputs, setInputs] = useState(initInputs)
+const [commentToggle, setCommentToggle] = useState(false)
 
   const [toggle, setToggle] = useState(false)
 
 const [runComments, setRunComments] = useState([])
 
-  // get all comments for this run
+  // get all comments for this run, thank you Jordan!
   useEffect(() => {
     setRunComments(comments)
   }, [])
 
-    //function for the new comment form
-    function handleChange(e){
-      const {name, value} = e.target
-      setInputs(prevInputs => ({
-          ...prevInputs,
-        [name]: value
-      }))
-    }
-  
-    function handleSubmit(e){
-      // e.preventDefault()
-      runAxios.post(`/api/comments/${_id}`, inputs)
-      .then(res => addComment(res.data))
-      .catch(err => console.log(err.response.data.errMsg))
-      
-      setInputs(initInputs)
-    }
+
   
     //update state after a new comment is added
     function addComment(newComment){
-          setRunComments(prevState => (
-   [...prevState, newComment]
-          ))
+      runAxios.post(`api/comments/${_id}`, newComment)
+      .then(res => setRunComments(prevState => [...prevState, res.data]))
+      .catch(err => console.log(err.response.data.errMsg))
   }
   
   //delete comment
@@ -63,16 +44,14 @@ const [runComments, setRunComments] = useState([])
   
   //edit comment
   
-  function handleEdit(_id, inputs){
+  function editComment(inputs, _id){
   
     runAxios.put(`/api/comments/${_id}`, inputs)
     .then(res => {
-      setRunComments(prevComments => prevComments.map(comment => comment._id === _id? comment : res.data))
+      setRunComments(prevComments => prevComments.map(comment => comment._id !== _id? comment : res.data))
     })
     .catch(err => console.log(err.response.data.errMsg))
   }
-
-console.log(runComments)
 
   let runDate = date.split("T")[0]
 
@@ -106,36 +85,45 @@ console.log(runComments)
                 <h4>{medalUsers.length}</h4>
                 <FontAwesomeIcon icon={faMedal} onClick = {addMedal}/>
                 </div>
-            <button onClick={() => setToggle(prevToggle => !prevToggle)} className="smallButton">Edit Run</button>
 
-            <button className="smallButton" onClick={() => deleteRun(run._id)}>Delete Run</button>
+{/* only render these buttons in the "view my runs" page */}
+
+{isMyRunsPage && 
+<>
+            <button onClick={() => setToggle(prevToggle => !prevToggle)} className="smallButton">Edit Run</button>
+            <button className="smallButton" onClick={() => deleteRun(_id)}>Delete Run</button>
+</>
+}
+
           </div >}
 
           {/* toggle comments view on or off */}
-{toggle? 
+{commentToggle? 
 <>
+
 {runComments.map(comment => <Comment 
 {...comment}
 key = {comment._id}
+commentId = {comment._id}
 deleteComment = {deleteComment}
-handleChange = {handleChange}
-handleEdit = {handleEdit}
-inputs = {inputs}
+editComment = {editComment}
 />)
  }
+
  {/* add a form at the bottom of comments to add a comment */}
+
 <CommentForm 
 btnText = "Submit Comment" 
-toggle = {() => setToggle(prevToggle => !prevToggle)}
-handleChange = {handleChange}
-handleSubmit = {handleSubmit}
-inputs = {inputs.content}
+submit = {addComment}
+initContent = ""
+toggle = {() => setCommentToggle(prevToggle => !prevToggle)}
 /> 
+
 </>
 : 
 <div>
 <h3>{runComments.length}</h3>
-<FontAwesomeIcon icon={faComment} onClick = {() => setToggle(prevToggle => !prevToggle)} />
+<FontAwesomeIcon icon={faComment} onClick = {() => setCommentToggle(prevToggle => !prevToggle)} />
 </div>
 
 }

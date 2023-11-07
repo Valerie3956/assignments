@@ -4,7 +4,7 @@
 }
 
 body {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   font-family: "raleway";
   background-color: #f9e1e1;
@@ -63,7 +63,7 @@ body {
   height: 30px;
   padding: 20px;
   border-radius: 10px;
-  width: 70vw;
+  width: auto;
   margin: 10px;
   font-weight: 500;
   color: #ffffff;
@@ -78,10 +78,13 @@ body {
   width:100vw;
   height:15vh;
   display:flex;
+  position:sticky;
+  top:0;
   justify-content: space-around;
   align-items:center;
   background-color: #2e0531;
-  color:#ffffff
+  color:#ffffff;
+  z-index:9999
 }
 
 .menuToggle{
@@ -165,7 +168,7 @@ color: #ffffff;
   height: 30px;
   padding: 20px;
   border-radius: 10px;
-  width: 30vw;
+  width: auto;
   margin: 10px;
   font-weight: 500;
   color: #ffffff;
@@ -214,6 +217,13 @@ color: #ffffff;
 
 .nameSocial {
   color:#2e0531
+}
+
+/* comments */
+
+.comment{
+  border: solid 1px #e78467;
+  margin:10px
 }
 
 /* colors: 

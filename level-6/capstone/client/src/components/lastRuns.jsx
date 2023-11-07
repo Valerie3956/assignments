@@ -1,17 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
-import axios from 'axios'
+import React, { useContext, useEffect } from 'react'
 import { RunContext } from '../context/runContext'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faPersonRunning, faMedal, faComment } from '@fortawesome/free-solid-svg-icons'
 import Run from './run'
-import CommentForm from './commentForm'
-import Comment from './comment'
+
 
 export default function LastRuns(props) {
 
     const { runs, addStar, addRunnerDude, addMedal, getAllRuns } = useContext(RunContext)
 
-    const [toggle, setToggle] = useState(false)
 
 useEffect (() => {
     getAllRuns()
@@ -22,14 +17,14 @@ const lastRuns = runs.filter(run => run.lastRun)
 
 const sortedLastRuns = lastRuns.sort((a, b) => new Date(b.lastRun.date) - new Date(a.lastRun.date))
 
-// console.log(sortedLastRuns)
+
 
     return (
         <div className="main">
             <h1>Last Runs</h1>
             {sortedLastRuns.map(run => 
 
-            <div className = "run">
+            <div className = "run" key = {run.lastRun._id}>
                 <h1 className = "nameSocial">{run.username}</h1>
                 <Run 
                 date = {run.lastRun.date}
@@ -39,6 +34,7 @@ const sortedLastRuns = lastRuns.sort((a, b) => new Date(b.lastRun.date) - new Da
                 pace = {run.lastRun.pace}
                 starUsers = {run.lastRun.starUsers}
                 runningstarUsers = {run.lastRun.runningstarUsers}
+                comments = {run.lastRun.comments}
                 medalUsers = {run.lastRun.medalUsers}
                 addStar = {() => addStar(run.lastRun._id)}
                 addRunnerDude = {() => addRunnerDude(run.lastRun._id)}

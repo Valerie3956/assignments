@@ -30,8 +30,6 @@ function paceCalculator(distance, time){
     const dist = distance
     const splitTime = time.split(":")
 
-    console.log(dist)
-
 //for those long runs
     if(splitTime.length === 3){
         const hours = parseInt(splitTime[0])
@@ -66,7 +64,7 @@ function paceCalculator(distance, time){
 //handle submit
 
 function handleSubmit(e){
-    // e.preventDefault()
+    e.preventDefault()
     submit(inputs, runId)
     setInputs(initInputs)
   }
