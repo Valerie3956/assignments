@@ -21,7 +21,7 @@ function App() {
 
 <Route 
   path = "/"
-  element = {token ? <Navigate to ="/myRuns" /> : <Auth />}
+  element = {token ? <Navigate to ="/runLog" /> : <Auth />}
   />
 
 <Route 

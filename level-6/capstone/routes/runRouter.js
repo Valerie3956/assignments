@@ -90,6 +90,57 @@ return res.status(201).send(result)
 }
 })
 
+//run reactions
 
+runRouter.put("/star/:runId", (req, res, next) => {
+    Run.findOneAndUpdate(
+      { _id: req.params.runId },
+      {
+        $addToSet: { starUsers: req.auth._id },
+      },
+      { new: true },
+      (err, updatedRun) => {
+        if(err){
+          res.status(500)
+          return next(err)
+        }
+        return res.status(201).send(updatedRun)
+      }
+    )
+  })
+
+  runRouter.put("/runnerdude/:runId", (req, res, next) => {
+    Run.findOneAndUpdate(
+      { _id: req.params.runId },
+      {
+        $addToSet: { runningstarUsers: req.auth._id },
+      },
+      { new: true },
+      (err, updatedRun) => {
+        if(err){
+          res.status(500)
+          return next(err)
+        }
+        return res.status(201).send(updatedRun)
+      }
+    )
+  })
+
+  runRouter.put("/medal/:runId", (req, res, next) => {
+    Run.findOneAndUpdate(
+      { _id: req.params.runId },
+      {
+        $addToSet: { medalUsers: req.auth._id },
+      },
+      { new: true },
+      (err, updatedRun) => {
+        if(err){
+          res.status(500)
+          return next(err)
+        }
+        return res.status(201).send(updatedRun)
+      }
+    )
+  })
 
 module.exports = runRouter

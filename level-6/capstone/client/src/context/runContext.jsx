@@ -16,18 +16,74 @@ runAxios.interceptors.request.use(config => {
 
 const [runs, setRuns] = useState([])
     
-useEffect(() => {
+function getAllRuns(){
     runAxios.get("api/run/getAll")
     .then(res => setRuns(res.data))
     .catch(err => console.log(err.response.data.errMsg))
-}, [])
+}
 
-console.log(runs)
+//reactions
+
+function addStar(runId){
+    runAxios.put(`api/run/star/${runId}`)
+.then(res => setRuns(prevRuns => {
+    const updatedRuns = prevRuns.map(run => {
+        if (run.lastRun._id === runId){
+            return {
+                ...run,
+                lastRun : res.data
+            }
+        }
+        return run
+    })
+    return updatedRuns
+}))
+        .catch(err => console.log(err.response.data.errMsg))
+}
+
+function addRunnerDude(runId){
+    runAxios.put(`api/run/runnerDude/${runId}`)
+.then(res => setRuns(prevRuns => {
+    const updatedRuns = prevRuns.map(run => {
+        if (run.lastRun._id === runId){
+            return {
+                ...run,
+                lastRun : res.data
+            }
+        }
+        return run
+    })
+    return updatedRuns
+}))
+        .catch(err => console.log(err.response.data.errMsg))
+}
+
+function addMedal(runId){
+    runAxios.put(`api/run/medal/${runId}`)
+.then(res => setRuns(prevRuns => {
+    const updatedRuns = prevRuns.map(run => {
+        if (run.lastRun._id === runId){
+            return {
+                ...run,
+                lastRun : res.data
+            }
+        }
+        return run
+    })
+    return updatedRuns
+}))
+        .catch(err => console.log(err.response.data.errMsg))
+}
+
 
     return (
         <RunContext.Provider
             value={{
-runs
+runs,
+getAllRuns,
+addStar,
+addRunnerDude,
+addMedal
             }}
 
         >

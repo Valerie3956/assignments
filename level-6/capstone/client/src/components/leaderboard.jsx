@@ -8,8 +8,12 @@ import { RunContext } from '../context/runContext'
 export default function Leaderboard(){
     
 
-    const {runs} = useContext(RunContext)
+    const {runs, getAllRuns} = useContext(RunContext)
     console.log(runs)
+
+    useEffect (() => {
+        getAllRuns()
+    }, [])
 
     const sortedRunners = runs.sort((a, b) => b.totalMiles - a.totalMiles)
 

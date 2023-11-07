@@ -29,16 +29,15 @@ const runSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "User"
     }],
-    strongUsers:[{
+    medalUsers:[{
         type: Schema.Types.ObjectId,
         ref: "User"
     }],
-    fireUsers:[{
+    runningstarUsers:[{
         type: Schema.Types.ObjectId,
         ref: "User"
     }]
 })
-
 
 
 

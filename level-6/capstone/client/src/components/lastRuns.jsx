@@ -1,24 +1,26 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { RunContext } from '../context/runContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar, faPersonRunning, faMedal, faComment } from '@fortawesome/free-solid-svg-icons'
 
 export default function LastRuns(props) {
 
-    const { runs } = useContext(RunContext)
+    const { runs, addStar, addRunnerDude, addMedal, getAllRuns } = useContext(RunContext)
 
-    // const {userAxios} = useContext(UserContext)
+    const [toggle, setToggle] = useState(false)
 
-    // const [runs, setRuns] = useState([])
+useEffect (() => {
+    getAllRuns()
+}, [])
 
-    // useEffect(() => {
-    //     userAxios.get("api/run/getAll")
-    //     .then(res => setRunners(res.data))
-    //     .catch(err => console.log(err.response.data.errMsg))
-    // }, [])
 
-    const sortedLastRuns = runs.sort((a, b) => new Date(b.lastRun.date) - new Date(a.lastRun.date))
+const lastRuns = runs.filter(run => run.lastRun)
 
-    console.log(sortedLastRuns)
+    const sortedLastRuns = lastRuns.sort((a, b) => new Date(b.lastRun.date) - new Date(a.lastRun.date))
+
+
+    // console.log(sortedLastRuns)
 
     return (
         <div className="main">
@@ -30,6 +32,14 @@ export default function LastRuns(props) {
                 <h2>Distance: {run.lastRun.distance} miles</h2>
                 <h3>Time: {run.lastRun.time}</h3>
                 <h3>Pace: {run.lastRun.pace}</h3>
+                <div className = "reactions">
+                    <h4>{run.lastRun.starUsers.length}</h4>
+                <FontAwesomeIcon icon={faStar} onClick = {() => addStar(run.lastRun._id)} />
+                <h4>{run.lastRun.runningstarUsers.length}</h4>
+                <FontAwesomeIcon icon={faPersonRunning} onClick = {() => addRunnerDude(run.lastRun._id)} />
+                <h4>{run.lastRun.medalUsers.length}</h4>
+                <FontAwesomeIcon icon={faMedal} onClick = {() => addMedal(run.lastRun._id)}/>
+                </div>
             </div>)}
         </div>
     )
