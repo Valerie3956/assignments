@@ -127,11 +127,27 @@ export default function UserProvider(props) {
 
     //delete run
 
-    function deleteRun(runId) {
-        userAxios.delete(`/api/run/${runId}`)
-            .then(setUserRuns(prevUserRuns => prevUserRuns.filter(run => run._id !== runId)))
-            .catch(err => console.log(err.response.data.errMsg))
+    async function deleteRun(runId) {
+        try {
+            //add run to DB
+            const runResponse = await userAxios.delete(`/api/run/${runId}`)
+            
+            //updates userState
+            setUserState(prevUserState => ({
+                ...prevUserState,
+                user: {
+                    ...prevUserState.user,
+                    totalMiles: runResponse.data.runUser.totalMiles
+                }
+            }))
+            //update user runs in state
+            setUserRuns(prevUserRuns => prevUserRuns.filter(run => run._id !== runId))
+        } catch (err) {
+            console.log(err)
+        }
+
     }
+
 
     //edit run
     function editRun(inputs, runId) {

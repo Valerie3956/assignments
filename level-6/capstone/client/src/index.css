@@ -96,7 +96,7 @@ body {
 }
 
 .dropDown{
-  position:absolute;
+  position:sticky;
   top: 15vh;
   background-color: #e78467;
   color:#ffffff;
@@ -141,7 +141,7 @@ color: #ffffff;
 /* run */
 
 .run{
-  margin:10px;
+  /* margin:10px; */
   position:relative;
   left:50%;
   transform: translateX(-50%);
@@ -180,6 +180,13 @@ color: #ffffff;
 
 .smallButton:hover{
   background-color: #ec6538;
+}
+
+.reactions{
+  width:40vw;
+  display:flex;
+  justify-content: space-around;
+  margin:5px;
 }
 
 /* leaderboard */
@@ -224,6 +231,22 @@ color: #ffffff;
 .comment{
   border: solid 1px #e78467;
   margin:10px
+}
+
+
+@media only screen and (min-width: 1008px) {
+
+
+.runStats{
+  display:flex;
+  justify-content: space-around;
+}
+
+.reactions{
+  width: 10vw
+}
+
+
 }
 
 /* colors: 

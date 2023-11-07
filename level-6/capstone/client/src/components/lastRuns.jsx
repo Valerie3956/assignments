@@ -24,7 +24,7 @@ const sortedLastRuns = lastRuns.sort((a, b) => new Date(b.lastRun.date) - new Da
             <h1>Last Runs</h1>
             {sortedLastRuns.map(run => 
 
-            <div className = "run" key = {run.lastRun._id}>
+            <div key = {run.lastRun._id}>
                 <h1 className = "nameSocial">{run.username}</h1>
                 <Run 
                 date = {run.lastRun.date}

@@ -58,7 +58,7 @@ const [runComments, setRunComments] = useState([])
   return (
     <>
 
-      <div>
+      <div className="run">
         {toggle ?
           <>
             <RunForm btnText="Log Edit"
@@ -72,18 +72,24 @@ const [runComments, setRunComments] = useState([])
             <button className="smallButton" onClick={() => deleteRun(run._id)}>Delete Run</button>
           </>
           :
-          <div className="run">
+          <div className = "runStats">
             <h2>Date: {runDate}</h2>
             <h2>Distance: {distance} miles</h2>
             <h3>Time: {time}</h3>
             <h3>Pace: {pace}</h3>
             <div className = "reactions">
+              <div>
                     <h4>{starUsers.length}</h4>
                 <FontAwesomeIcon icon={faStar} onClick = {addStar} />
+              </div>
+              <div>
                 <h4>{runningstarUsers.length}</h4>
                 <FontAwesomeIcon icon={faPersonRunning} onClick = {addRunnerDude} />
+              </div>
+              <div>
                 <h4>{medalUsers.length}</h4>
                 <FontAwesomeIcon icon={faMedal} onClick = {addMedal}/>
+              </div>
                 </div>
 
 {/* only render these buttons in the "view my runs" page */}
