@@ -42,7 +42,6 @@ commentsRouter.get("/user/:userId", (req, res, next) => {
 //add new comment
 
 commentsRouter.post("/:runId", (req, res, next) => {
-    console.log(req)
     req.body.user = req.auth._id
     req.body.run = req.params.runId
     const newComment = new Comment(req.body)

@@ -83,7 +83,8 @@ runs,
 getAllRuns,
 addStar,
 addRunnerDude,
-addMedal
+addMedal,
+runAxios
             }}
 
         >
